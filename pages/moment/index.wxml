@@ -1,0 +1,5 @@
+<!--pages/moment/index.wxml-->
+<view>
+<text>pages/moment/index.wxml</text>
+<cu-tabbar></cu-tabbar>
+</view>

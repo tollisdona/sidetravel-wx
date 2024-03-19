@@ -1,0 +1,72 @@
+{
+  "pages": [   
+
+    "pages/square/square",
+    "pages/playmate/index",
+     "pages/userinfo/index",
+    "pages/start/start",
+    "pages/index/index",
+    "pages/logs/logs",
+
+    "pages/location/index",
+    "pages/moment/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#515151",
+    "selectedColor": "#DAA520",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/square/square",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/playmate/index",
+        "text": "游伴"
+      },
+      {
+        "pagePath": "pages/moment/index",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/location/index",
+        "text": "景点"
+      },
+      {
+        "pagePath": "pages/userinfo/index",
+        "text": "个人信息"
+      }
+    ]
+  },
+  "style": "v2",
+  "renderer": "skyline",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "requiredPrivateInfos": [
+    "getLocation",
+    "choosePoi",
+    "chooseAddress"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置将用于的地图功能"
+    }
+  },
+  "useExtendedLib": {
+    "weui": true
+  }
+}

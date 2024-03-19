@@ -1,0 +1,19 @@
+<!--pages/start.wxml-->
+<!-- 初次使用提供登录按钮
+如果已经使用过直接登录，提供使用头像昵称功能修改
+希望有登录授权意识但是，login实现了静默登录，点击login后没有反馈会造成疑惑
+改为欢迎页面==》
+初次使用展示,重新进入展示，
+点击小程序静默登录，进入首页咨询页 -->
+
+<view class="container">
+    <!-- TODO: 图片源改为 网路图片 -->
+
+    <view class="content">
+        welcome
+    </view>
+    <view class="login">
+      <button bindtap="userLogin">欢迎</button>
+    </view>
+    
+</view>

@@ -1,0 +1,5 @@
+<!--pages/playmate/index.wxml-->
+<view>
+<text>pages/playmate/index.wxml</text>
+<cu-tabbar></cu-tabbar>
+</view>

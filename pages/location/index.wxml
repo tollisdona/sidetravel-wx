@@ -1,0 +1,6 @@
+<!--pages/sitemap/index.wxml-->
+
+<view>
+<text>pages/sitemap/index.wxml</text>
+<cu-tabbar></cu-tabbar>
+</view>
