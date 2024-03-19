@@ -1,0 +1,5 @@
+<!--pages/UserInfo/index.wxml-->
+<view class="">
+<text>pages/UserInfo/index.wxml</text>
+<cu-tabbar></cu-tabbar>
+</view>
