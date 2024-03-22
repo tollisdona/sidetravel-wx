@@ -31,9 +31,9 @@
 
 
 .bulge .item-bulge{
-  position: relative;
-  
+  position: fixed;
   bottom: 0;
+
   z-index: -1;
   bottom: 110rpx;
   border-radius: 50%;

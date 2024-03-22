@@ -1,10 +1,10 @@
 {
   "pages": [   
-
     "pages/square/square",
+    "pages/start/start",
     "pages/playmate/index",
      "pages/userinfo/index",
-    "pages/start/start",
+
     "pages/index/index",
     "pages/logs/logs",
 
@@ -44,10 +44,10 @@
     ]
   },
   "style": "v2",
-  "renderer": "skyline",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,
+      "defaultContentBox": true,
       "disableABTest": true,
       "sdkVersionBegin": "3.0.0",
       "sdkVersionEnd": "15.255.255"

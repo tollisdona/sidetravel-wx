@@ -3,8 +3,9 @@
   "projectname": "sidetravel",
   "setting": {
     "compileHotReLoad": true,
-    "skylineRenderEnable": false,
+    "skylineRenderEnable": true,
     "urlCheck": false,
-    "bigPackageSizeSupport": true
+    "bigPackageSizeSupport": true,
+    "ignoreDevUnusedFiles": false
   }
 }
