@@ -22,14 +22,14 @@ Component({
         "text": "首页",
         "iconType":"outline",
         "icon":"home",
-        "iconSize":35
+        "iconSize":30
       },
       {
         "pagePath": "pages/playmate/index",
         "text": "游伴",
         "iconType":"outline",
         "icon":"group-detail",
-        "iconSize":35
+        "iconSize":30
       },
       {
         "pagePath": "pages/moment/index",
@@ -37,21 +37,21 @@ Component({
         "iconType":"outline",
         "icon":"add",
         "bulge":"true",
-        "iconSize":55
+        "iconSize":50
       },
       {
         "pagePath": "pages/location/index",
         "text": "景点",
         "iconType":"outline",
         "icon":"location",
-        "iconSize":35
+        "iconSize":30
       },
       {
         "pagePath": "pages/userinfo/index",
         "text": "个人信息",
         "iconType":"outline",
         "icon":"me",
-        "iconSize":35
+        "iconSize":30
       }
     ],
   },
@@ -64,7 +64,7 @@ Component({
       const data = e.currentTarget.dataset;
       console.log(data);
       wx.switchTab({
-        url: 'pages/moment/index',
+        url: "/"+data.path,
       })
     }
   }

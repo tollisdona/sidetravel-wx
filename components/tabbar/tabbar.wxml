@@ -4,9 +4,9 @@
   <view wx:for="{{list}}" wx:key="index" class="tabbar-item {{item.bulge?'bulge':''}}" data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchTab">
   <view wx:if="item.bulge" class="item-bulge"></view>
   <view wx:if="item.bulge" class="wrap-icon">
-  <mp-icon class="icon" type="{{item.iconType}}" icon="{{item.icon}}" color="{{selected === index?color:selectedColor}}" size="{{item.iconSize}}"></mp-icon>
+  <mp-icon class="icon" type="{{item.iconType}}" icon="{{item.icon}}" color="{{selected === index ? color : selectedColor}}" size="{{item.iconSize}}"></mp-icon>
   </view>
-  <mp-icon class="icon" wx:else type="{{selected === index ?'field':'outline'}}" icon="{{item.icon}}" color="{{selected === index ? color:selectedColor}}" size="{{iconSize}}"></mp-icon>
+  <mp-icon class="icon" wx:else type="{{selected === index ?'field':'outline'}}" icon="{{item.icon}}" color="{{selected === index ? color:selectedColor}}" size="{{item.iconSize}}"></mp-icon>
   <text style="color:{{selected === index ? color:selectedColor}}">{{item.text}}</text>
   </view>
 </view>
