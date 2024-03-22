@@ -1,7 +1,7 @@
 /* components/tabbar/tabbar.wxss */
 .custom-tabbar{
   pointer-events: auto;
-  position: fixed;
+  position: absolute;
   bottom:0;
   left: 0;
   display: flex;
