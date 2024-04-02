@@ -3,9 +3,9 @@
   <view class="search-bar">
   <search-bar type="text" placeholder="搜索景点，攻略和路线" showCancel="{{true}}" />
   </view>
-  <button open-type="getUserInfo">授权登录</button>
+  <!-- <button open-type="getUserInfo">授权登录</button> -->
   <view class="filter">
-    <button>shuquan</button>
+    <!-- <button>shuquan</button> -->
   </view>
 <scroll-view 
  scroll-y
