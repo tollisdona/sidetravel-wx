@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "cu-tabbar":"/components/tabbar/tabbar"
-  }
+  },
+  "renderer": "skyline"
 }

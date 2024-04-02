@@ -1,8 +1,10 @@
 {
   "usingComponents": {
-    "cu-tabbar":"/components/tabbar/tabbar"
+    "card":"/components/card/card",
+    "navigation-bar":"/components/navigation-bar/navigation-bar",
+    "search-bar":"/components/search-bar/index"
   },
   "renderer": "skyline",
+  "disableScroll": true,
   "navigationStyle": "custom"
-
 }

@@ -1,0 +1,36 @@
+/* components/custom-tab-bar/index.wxss */
+.custom-tabbar{
+  pointer-events: auto;
+  position: absolute;
+  bottom:0;
+  left: 0;
+  display: flex;
+  height:200rpx;
+  width:100%;
+  /* border : 1px solid red; */
+  line-height: 1;
+  background-color: whitesmoke
+}
+.tabbar-item{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  padding-bottom: 40rpx;
+  justify-content: center;
+
+}
+
+text{
+  margin-top: 20rpx;
+  align-items: center;
+  justify-content: center;
+  font-weight: 200;
+  font-size:25rpx;
+}
+
+
+.icon{
+  width: 70rpx;
+  height: 70rpx;
+}

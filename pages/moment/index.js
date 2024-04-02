@@ -8,15 +8,6 @@ Page({
 
   },
 
-  tabbar(){
-      if (typeof this.getTabBar === 'function' ) {
-        this.getTabBar((tabBar) => {
-          tabBar.setData({
-            selected: 2
-          })
-        })
-      }
-  },
   setTabbar(){
     if (typeof this.getTabBar === 'function' ) {
       this.getTabBar((tabBar) => {

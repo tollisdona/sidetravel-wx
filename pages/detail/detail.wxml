@@ -1,0 +1,73 @@
+<pan-gesture-handler worklet:ongesture="handlePanGesture">
+	<view id="fake-host">
+		<view id="page">
+			<view class="navigation-bar">
+				<view class="navigation-bar-content">
+					<image class="navigation-bar-avatar" src="https://res.wx.qq.com/op_res/BqgN85sXxTbk1kynEEihrwQPXmcn86nOyioRnPAfkrbZteUWsKfEpgoYZ1pk-3TMTc_qXFSElIgkvILR-zzh1Q" />
+					<view class="navigation-bar-title">{{nickname}}</view>
+					<view class="navigation-bar-follow">关注</view>
+				</view>
+			</view>
+			<share-element
+			 key="se-key{{index}}"
+			 shuttle-on-push="from"
+			 transition-on-gesture="{{true}}"
+			 rect-tween-type="cubic-bezier(0.4, 0.0, 0.2, 1.0)"
+			 style="width: 100%; height: 0px;"
+			>
+				<view/>
+			</share-element>
+
+			<scroll-view
+			 scroll-y
+			 style="flex: 1; width: 100%; overflow: hidden;"
+			 type="list"
+			 show-scrollbar="{{false}}"
+			>
+				<view>
+          <!-- swiper 还可以做个手势协商，此处省略，即在当前是第一张图时，右滑触动页面返回交互 -->
+					<swiper id="swiper" style="width: 100%; height: {{swiperHeight}}px;" indicator-dots>
+						<swiper-item>
+							<image class="detail-image" mode="widthFix" src="{{url}}" />
+						</swiper-item>
+						<swiper-item wx:for="{{imageList}}" wx:key="index">
+							<image class="detail-image" mode="widthFix" src="{{item}}" />
+						</swiper-item>
+					</swiper>
+				</view>
+
+				<view class="detail-content">
+					<view class="detail-title">{{content}}</view>
+          <view class="detail-p" style="padding-bottom: 20px;" />
+					<view class="detail-p">🔥 Skyline 以性能为首要目标，提供更为接近原生的用户体验，Skyline 具有以下特点：</view>
+          <view class="detail-p" style="padding-bottom: 10px;" />
+					<view class="detail-p">🌟 界面更不容易被逻辑阻塞，进一步减少卡顿</view>
+					<view class="detail-p">🌟 无需为每个页面新建一个 JS 引擎实例（WebView），减少了内存、时间开销</view>
+					<view class="detail-p">🌟 框架可以在页面之间共享更多的资源，进一步减少运行时内存、时间开销</view>
+					<view class="detail-p">🌟 框架的代码之间无需再通过 JSBridge 进行数据交换，减少了大量通信时间开销</view>
+					<view class="detail-p" style="padding-bottom: 20px;" />
+					<view class="detail-p">👇👇👇 支持了一些 Web 所缺失的但很重要的能力，以满足开发者实现更好的交互体验：</view>
+          <view class="detail-p" style="padding-bottom: 10px;" />
+					<view class="detail-p">🔸 Worklet 动画：能够在渲染线程同步运行动画相关逻辑。</view>
+					<view class="detail-p">🔸 手势系统：在渲染线程同步监听手势、执行手势相关逻辑；支持手势协商处理；</view>
+					<view class="detail-p">🔸 自定义路由：实现自定义路由动画和交互。</view>
+					<view class="detail-p">🔸 共享元素动画：将上一个页面的元素“共享”到下一个页面，并伴随着过渡动画。</view>
+				</view>
+			</scroll-view>
+			<view class="footer">
+				<view class="footer-content">
+					<input class="footer-input" placeholder="说点什么..." />
+					<span>
+						<text class="footer-icon">❤️</text>
+						317
+					</span>
+					<span>
+						<text class="footer-icon">⭐️</text>
+						723
+					</span>
+				</view>
+			</view>
+		</view>
+	</view>
+</pan-gesture-handler>
+
