@@ -1,15 +1,14 @@
 {
-  "pages": [   
+  "pages": [
     "pages/square/square",
-    "pages/start/start",
     "pages/playmate/index",
-     "pages/userinfo/index",
-
+    "pages/start/start",
+    "pages/userinfo/index",
     "pages/index/index",
     "pages/logs/logs",
-
     "pages/location/index",
-    "pages/moment/index"
+    "pages/moment/index",
+    "pages/search/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -42,6 +41,10 @@
         "text": "个人信息"
       }
     ]
+  },
+  "usingComponents": {
+    "custom-tab-bar": "custom-tab-bar/index",
+    "navigation-bar": "/components/navigation-bar/navigation-bar"
   },
   "style": "v2",
   "rendererOptions": {

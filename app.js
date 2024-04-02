@@ -38,6 +38,8 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    sky_system:{},
+    sky_menu:{}
   }
 })

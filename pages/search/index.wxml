@@ -1,0 +1,2 @@
+<!--pages/search/index.wxml-->
+<search-bar type="text" placeholder="搜索景点，攻略和路线" showCancel="{{true}}"/>

@@ -1,2 +1,13 @@
 /* pages/square.wxss */
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+scroll-view {
+  background-color: #420a0a;
+}
 
+view, scroll-view, page, image {
+  box-sizing: border-box;
+}

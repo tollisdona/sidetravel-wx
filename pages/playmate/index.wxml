@@ -1,5 +1,4 @@
 <!--pages/playmate/index.wxml-->
-<view>
+<view class="container">
 <text>pages/playmate/index.wxml</text>
-<cu-tabbar></cu-tabbar>
 </view>

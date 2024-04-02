@@ -9,11 +9,9 @@ Page({
   },
 
   setTabbar(){
-    if (typeof this.getTabBar === 'function' ) {
-      this.getTabBar((tabBar) => {
-        tabBar.setData({
-          selected: 1
-        })
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
       })
     }
 },

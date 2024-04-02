@@ -1,0 +1,19 @@
+<!--components/search-bar/index.wxml-->
+<view class="search-bar-wrap">
+<view class="search-bar"> 
+<view class="icon-wrap">
+<image class="search-icon" src="/images/search.svg"></image>
+  </view>
+<view class="search-input">
+  <input confirm-type="{{comfirmType}}" value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="{{placeholderStyle}}" disabled="{{disabled}}" focus="{{focus}}" clear="{{clear}}" cursor-color="{{cursorColor}}" showCancel="{{showCancel}}"
+  bindinput="handleInputChange" bindfocus="handleInputFocus" bindblur="handleInputBlur"
+  bindconfirm="handleInputConfirm" />
+  <view class="close-wrap" wx:if="{{clear&&value}}" mut-bind:tap="onClearTap">
+    <image class="search-icon" src="/images/error.svg" />
+  </view>
+  </view>
+</view>
+<view class="cancel" wx:if="{{showCancel}}" mut-bind:tap="onCancel">
+  {{cancelText}}
+</view>
+</view>
