@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "search-bar":"/components/search-bar/index"
-  }
+  },
+  "renderer": "skyline"
 }

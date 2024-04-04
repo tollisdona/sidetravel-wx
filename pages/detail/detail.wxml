@@ -1,3 +1,4 @@
+<navigation-bar></navigation-bar>
 <pan-gesture-handler worklet:ongesture="handlePanGesture">
 	<view id="fake-host">
 		<view id="page">

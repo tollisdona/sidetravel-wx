@@ -14,7 +14,6 @@
   background-color: #F8F8F8;
   border:lightgray solid 1px ;
   margin:5rpx 15rpx;
-  padding:rpx;
   border-radius: 25rpx;
 }
 .icon-wrap > image{

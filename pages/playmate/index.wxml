@@ -1,4 +1,21 @@
 <!--pages/playmate/index.wxml-->
+
 <view class="container">
 <text>pages/playmate/index.wxml</text>
+  <map
+      id="myMap"
+      style="width: 100%; height: 300px;"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      markers="{{markers}}"
+      covers="{{covers}}"
+      show-location
+    ></map>
+    <draggable-sheet>
+    <!-- 半屏弹窗 -->
+    <!-- 需要定位信息 -->
+    <!-- 周边热度高的景点 -->
+    <!-- 搜索目的地--精确位置 -->
+    <!-- 同行人推送 -->
+    </draggable-sheet>
 </view>
