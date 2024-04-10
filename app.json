@@ -8,7 +8,10 @@
     "pages/logs/logs",
     "pages/location/index",
     "pages/moment/index",
-    "pages/search/index"
+    "pages/search/index",
+    "pages/detail/detail",
+    "pages/message/index"
+    
   ],
   "window": {
     "navigationBarTextStyle": "black",

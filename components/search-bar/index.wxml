@@ -5,7 +5,7 @@
 <image class="search-icon" src="/images/search.svg"></image>
   </view>
 <view class="search-input">
-  <input confirm-type="{{comfirmType}}" value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="{{placeholderStyle}}" disabled="{{disabled}}" focus="{{focus}}" clear="{{clear}}" cursor-color="{{cursorColor}}" showCancel="{{showCancel}}"
+  <input confirm-type="{{comfirmType}}" value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="{{placeholderStyle}}" disabled="{{disabled}}" focus="{{focus}}"  cursor-color="{{cursorColor}}" showCancel="{{showCancel}}"
   bindinput="handleInputChange" bindfocus="handleInputFocus" bindblur="handleInputBlur"
   bindconfirm="handleInputConfirm" />
   <view class="close-wrap" wx:if="{{clear&&value}}" mut-bind:tap="onClearTap">
@@ -16,4 +16,8 @@
 <view class="cancel" wx:if="{{showCancel}}" mut-bind:tap="onCancel">
   {{cancelText}}
 </view>
+</view>
+<view class="result" wx:if="{{showResult&&value}}">
+  <view wx:for="{{searchResult}}" wx:key="index" bindtap="handleItemTap" data-index="{{index}}">
+  {{item}}</view>
 </view>

@@ -1,2 +1,11 @@
 /* pages/moment/index.wxss */
-
+.title.active{
+  color:green;
+}
+.title.active::after{
+    content:'            ';
+    position: absolute;
+    bottom:0;
+    height: 20rpx;
+    /* border-bottom:solid 2px green; */
+  }

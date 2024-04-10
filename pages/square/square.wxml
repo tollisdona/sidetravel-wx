@@ -1,28 +1,30 @@
 <!--pages/square.wxml--> 
   <navigation-bar back="{{false}}" title="HOME"></navigation-bar>
-  <view class="search-bar">
-  <search-bar type="text" placeholder="搜索景点，攻略和路线" showCancel="{{true}}" />
+  <view class="top-tab">
+  <image class="search" src="/images/search.svg" bindtap="clickSearch"/>
+  <view class="tabs">
+  <text wx:for="{{tablist}}" data-index="{{index}}" class="item {{currentTab == index ? 'active':''}}" wx:key="{{index}}" bindtap="tabTap">{{item}}</text> 
   </view>
-  <!-- <button open-type="getUserInfo">授权登录</button> -->
-  <view class="filter">
-    <!-- <button>shuquan</button> -->
+  <image class="message" src="/images/position-fill.svg" bindtap="clickMessage"/>
   </view>
-<scroll-view 
- scroll-y
- style="flex: 1; width: 100%; overflow: hidden; padding: {{padding}}px; padding-bottom: 0;"
- type="custom"
- show-scrollbar="{{false}}"
->
-  <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="4" main-axis-gap="4">
-    <card
-      wx:for="{{gridList}}"
-      wx:key="id"
-      card-width="{{cardWidth}}"
-      index="{{index}}"
-      item="{{item}}"
-    />
-  </grid-view>
-</scroll-view>
-
+  <!-- <view class="search-bar">
+  <search-bar type="text" bindfocus="handleInputFocus"/>
+  </view> -->
+  <scroll-view 
+  scroll-y
+  style="flex: 1; width: 100%; overflow: hidden; padding: {{padding}}px; padding-bottom: 0;"
+  type="custom"
+  show-scrollbar="{{false}}"
+  >
+    <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="4" main-axis-gap="4">
+      <card
+        wx:for="{{gridList}}"
+        wx:key="id"
+        card-width="{{cardWidth}}"
+        index="{{index}}"
+        item="{{item}}"
+      />
+    </grid-view>
+  </scroll-view>
 
 

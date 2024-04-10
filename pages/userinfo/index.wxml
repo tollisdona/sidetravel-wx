@@ -1,4 +1,19 @@
 <!--pages/UserInfo/index.wxml-->
-<view class="">
+<view class="user">
+<navigation-bar back="{{false}}" title="USER"></navigation-bar>
+<view class="tab-1"> 
+  <view class="user-avatar" style="border-radius: 50%;">
+    <image src="/images/user-fill.svg" style="width:150rpx; height:150rpx"></image>
+  </view>
+  <view class="user-info">
+    <text class="username">wwwwww</text>
+    <text class="rig-time">2022-05-06></text>
+    <text class="medal">fuck</text>
+  </view>
+</view>
+<view class="social">
+    <view> 
+    </view>
+</view>
 <text>pages/UserInfo/index.wxml</text>
 </view>

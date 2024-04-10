@@ -1,4 +1,7 @@
 <!--pages/moment/index.wxml-->
 <view>
-<text>pages/moment/index.wxml</text>
+<navigation-bar title="fabu" color="#908df5" background="#908df5"></navigation-bar>
+<view class="title active">
+  MAINLAND
+</view>
 </view>
