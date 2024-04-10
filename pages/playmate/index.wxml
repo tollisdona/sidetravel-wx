@@ -1,16 +1,36 @@
 <!--pages/playmate/index.wxml-->
+<navigation-bar title="约伴" back="{{false}}"></navigation-bar>
+<view class="area">
+<view class="tabs">
+  <view class="post item" bind:tap="tabTap">发布</view>
+  <view class="bar"></view>
+  <view class="select item" bind:tap="">筛选</view>
+</view>
+<view class="content">
+  <view class="post item" wx:if="d">发布内容
+  <view class="date">日期
+  <picker type=""></picker>
+  </view>
+  <view class="from">出发地</view>
+  <view class="to">目的地</view>
+  <view class="des">
+  <textarea maxlength="100" placeholder="描述自己的特点、行程，或者期望的旅伴~"></textarea>
+  </view>
+    </view>
+  <view class="select item" >筛选内容</view>
+</view>
 
-<view class="container">
-<text>pages/playmate/index.wxml</text>
-  <map
-      id="myMap"
-      style="width: 100%; height: 300px;"
-      latitude="{{latitude}}"
-      longitude="{{longitude}}"
-      markers="{{markers}}"
-      covers="{{covers}}"
-      show-location
-    ></map>
+</view>
+
+<picker mode="date"></picker>
+<view class="section">
+  <view class="section__title">日期选择器</view>
+  <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+    <view class="picker">
+      当前选择: {{date}}
+    </view>
+  </picker>
+</view>
     <draggable-sheet>
     <!-- 半屏弹窗 -->
     <!-- 需要定位信息 -->
@@ -18,4 +38,3 @@
     <!-- 搜索目的地--精确位置 -->
     <!-- 同行人推送 -->
     </draggable-sheet>
-</view>

@@ -14,6 +14,7 @@ Page({
       '热门',
       '附近'
     ],
+    safeHeight:0,
     itemWidth:0,
     windowWidth:0,
     sliderLeft:0,
@@ -21,7 +22,7 @@ Page({
     currentTab:1,
     sliderOffsets:[],
     padding: 4,
-    gridList: generateGridList(100, 2),
+    gridList: generateGridList(10, 2),
     cardWidth: (screenWidth - 4 * 2 - 4) / 2, // 减去间距
   },
   setTabbar(){
@@ -63,17 +64,38 @@ Page({
       url: '/pages/message/index'
     })
   },
+  onTabChanged(event){
+    this.setData({
+      currentTab: event.detail.current
+    })
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     this.created();
+    //安全高度
+    wx.getSystemInfo({
+      success:(res) =>{
+        console.log("res",res.screenHeight)
+        console.log("resdetail",res.safeArea)
+        var windowW = res.windowWidth
+        var h = res.safeArea.bottom - res.safeArea.top
+        h = h * 750 / windowW
+        var sh = h- 120 - 44 - 20
+        this.setData({
+          safeHeight: sh
+        })
+
+      }
+    })
   },
 
   // 处理点击tab
-  onTabClick(e) {
+  // onTabClick(e) {
     
-  },
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

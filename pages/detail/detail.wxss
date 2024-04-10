@@ -2,7 +2,8 @@ page {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: transparent;
+  /* background-color: transparent; */
+  background-color: #fff;
 }
 
 view, scroll-view, page, image {
