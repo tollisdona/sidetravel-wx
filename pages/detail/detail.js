@@ -43,7 +43,10 @@ Component({
     imageList: [
       'https://res.wx.qq.com/op_res/BqgN85sXxTbk1kynEEihr7lTnuuiwGJPwwjxDVYbDolj05sAxd5cOESVZt4_nl1KwzkiDWTvG56LuhE45xAaZA',
       'https://res.wx.qq.com/op_res/Ak_VAL-nLvq6laAMVJA86rf3NAZ2vY86v757dfja16Z95xtoxk4BWWDuTCPT-pD1SjGGIddUsH0l6C8Yu5LJlw'
-    ]
+    ],
+    safeTop:0,
+    safeBottom:0,
+    system:''
   },
   lifetimes: {
     created() {
@@ -52,6 +55,9 @@ Component({
       this.transX = shared(0)
       this.transY = shared(0)
       this.isInteracting = shared(false)
+      const res = wx.getSystemInfoSync()
+      console.log("system:",res.brand)
+      console.log("system:",res)
     },
     attached() {
       this.setData({

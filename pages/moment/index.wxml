@@ -1,7 +1,26 @@
 <!--pages/moment/index.wxml-->
-<view>
-<navigation-bar title="fabu" color="#908df5" background="#908df5"></navigation-bar>
-<view class="title active">
-  MAINLAND
+<navigation-bar title="发布动态" back="{{false}}"></navigation-bar>
+<view class="area">
+<view class="topbar">
+  <view class="left" bind:tap="onCancel">取消</view>
+  <view class="right" bind:tap="onSend">发送</view>
+</view>
+<view class="content">
+  <textarea placeholder="分享你的旅游动态..." maxlength="-1" focus="{{focus}}"></textarea>
+</view>
+<view class="media pick">
+  <view class="item" wx:for="{{mediaList}}">
+  <image src="{{item.url}}"  wx:if="{{!item.isPic}}"/>
+  <video src="{{item.url}}" wx:else> </video>
+  </view>
+  <view class="item upload" wx:if="{{!isFull}}">
+  <image src="/images/add-btn.svg" />
+  </view>
+</view>
+<view class="foot">
+  <view class="label">
+  <image src="/images/discount.svg" />标签</view> 
+  <view class="position">
+  <image src="/images/location.svg" />位置</view>
 </view>
 </view>

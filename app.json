@@ -1,21 +1,22 @@
 {
   "pages": [
-    "pages/square/square",
     "pages/playmate/index",
+    "pages/moment/index",
+    "pages/square/square",
     "pages/start/start",
     "pages/userinfo/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/location/index",
-    "pages/moment/index",
     "pages/search/index",
-    "pages/detail/detail",
-    "pages/message/index"
-    
+    "pages/message/index",
+    "pages/detail/detail"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationBarBackgroundColor": "#fff",
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light"
   },
   "tabBar": {
     "custom": true,

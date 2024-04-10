@@ -4,67 +4,53 @@ page {
   flex-direction: column;
   height: 100vh;
 }
+.view-bias{
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+}
 .top-tab{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  height:50rpx;
   /* border-bottom: red 9px solid; */
   /* height: 100rpx; */
 }
 .top-tab  image{
   margin-left: 20rpx;
   margin-right: 20rpx;
-  width: 50rpx;
-  height: 50rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 .tabs{
-  /* flex:1; */
   display: flex;
-  /* text-align: start; */
-  /* flex: none; */
   justify-content:space-around;
-  /* height: 100rpx; */
   align-items: center;
   /* background-color: #49701d; */
 }
 .item{
   position: relative;
-  /* display: block; */
   width: 100rpx;
   margin:5rpx 10rpx;
-  /* border: red 1px solid; */
-  /* background-color: rosybrown; */
-  font-size: 40rpx;
+  text-align: center;
+  font-size: 30rpx;
 }
 .item.active{
   font-weight: bold;
-
 }
-.item.active::after{
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 12rpx;
-  background-color: rebeccapurple;
-  content:"";
-  transform: translateY(-50%);
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* text-align: center; */
-  /* align-items: center; */
-  /* justify-content:center; */
-  /* margin: 0rpx,20rpx;
-  margin-left: 20rpx;
-  /* padding:50rpx; */
-  /* border-bottom: rebeccapurple 2px solid; */
+.item.active{
+  border-bottom: 2px solid red;
 }
 
 scroll-view {
-  background-color: #ffffff;
+  background-color: #fff;
 }
-
+swiper-item{
+  display: flex;
+  flex:1;
+}
 view, scroll-view, page, image {
   box-sizing: border-box;
 }

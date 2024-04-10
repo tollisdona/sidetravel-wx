@@ -1,4 +1,4 @@
-<navigation-bar></navigation-bar>
+<view class="auto" style="margin-bottom: {{safeBottom}};">
 <pan-gesture-handler worklet:ongesture="handlePanGesture">
 	<view id="fake-host">
 		<view id="page">
@@ -71,4 +71,4 @@
 		</view>
 	</view>
 </pan-gesture-handler>
-
+</view>

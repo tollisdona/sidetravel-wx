@@ -1,1 +1,30 @@
 /* pages/playmate/index.wxss */
+.area{
+  display: flex;
+  flex-direction: column;
+}
+.tabs{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 30rpx;
+  /* justify-content:space-around; */
+  align-items: center;
+  border: blue 1px solid;
+
+}
+.tabs .item{
+  flex:1;
+  text-align: center;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+}
+.tabs .bar{
+  width: 1rpx; 
+  border-right: solid red 2px;
+  height:30rpx;
+}
+.content{
+  /* 留出custom-tab-bar的高度 */
+  margin-bottom: 120rpx; 
+}
