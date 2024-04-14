@@ -2,14 +2,14 @@
 <view class="search-bar-wrap">
 <view class="search-bar"> 
 <view class="icon-wrap">
-<image class="search-icon" src="/images/search.svg"></image>
+<image class="search-icon" src="/images/search.svg"/>
   </view>
 <view class="search-input">
   <input confirm-type="{{comfirmType}}" value="{{value}}" type="{{type}}" placeholder="{{placeholder}}" placeholder-style="{{placeholderStyle}}" disabled="{{disabled}}" focus="{{focus}}"  cursor-color="{{cursorColor}}" showCancel="{{showCancel}}"
   bindinput="handleInputChange" bindfocus="handleInputFocus" bindblur="handleInputBlur"
   bindconfirm="handleInputConfirm" />
   <view class="close-wrap" wx:if="{{clear&&value}}" mut-bind:tap="onClearTap">
-    <image class="search-icon" src="/images/error.svg" />
+    <image class="search-icon" src="/images/error.svg"/>
   </view>
   </view>
 </view>
@@ -17,6 +17,13 @@
   {{cancelText}}
 </view>
 </view>
+  <!-- 联想建议列表 -->
+  <view class="suggestion" wx:if="{{showSuggestions}}">
+    <view wx:for="{{suggestions}}" wx:key="index" 
+    data-item="{{item}}"
+    bind:tap="selectSuggestion">{{item}}</view>
+  </view>
+
 <view class="result" wx:if="{{showResult&&value}}">
   <view wx:for="{{searchResult}}" wx:key="index" bindtap="handleItemTap" data-index="{{index}}">
   {{item}}</view>

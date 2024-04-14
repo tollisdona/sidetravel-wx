@@ -40,12 +40,8 @@ Component({
    */
   data: {
     value:'',
-    showResult:true,
-    searchResult:[
-      'ferando',
-      'lando',
-      'charles'
-    ]
+    showSuggestions:false,
+    suggestions:[]
   },
 
   /**
@@ -55,38 +51,66 @@ Component({
     handleInputFocus(event){
       this.triggerEvent('focus',{event});
     },
-    //输入搜索内容。
+    //输入搜索内容
     handleInputChange(event){
+      const inputValue = event.detail.value;
+      if(inputValue === ''){
+        this.setData({
+          showSuggestions:false
+        });
+      }else{
       this.setData({
-        value:event.detail.value,
-        showResult:true,
-      })
-      this.keywordSearch(this.data.value);
+        value:inputValue,
+        showSuggestions:true,
+      });
+    }
+      // 在这里可以根据 inputValue 去调用接口或者本地数据进行联想匹配，并更新 suggestions 数据
+      // 假设这里是一个本地数据的联想匹配函数
+      const suggestions = this.getLocalSuggestions(inputValue);
+      this.setData({
+        suggestions: suggestions
+      });
+      // this.keywordSearch(this.data.value);
       // const value = this.keywordSearch();
       // this.triggerEvent('search',{keyword:value})
     },
-    //关键词联想
-    keywordSearch(value){
-      //调用后端实时搜索
-      //如何提取关键词
-    },
-    //软键盘按下确认搜索
-    handleInputConfirm(event){
-      const value = this.data.value;
-      this.triggerEvent('search',{keyword:value});
-    },
-    //取消搜素
+    // 模拟本地数据的联想匹配函数
+  getLocalSuggestions: function(inputValue) {
+    const suggestionsData = ['苹果', '香蕉', '橙子', '西瓜', '草莓','草东','香草','桃子'];
+    const filteredSuggestions = suggestionsData.filter(item => item.includes(inputValue));
+    return filteredSuggestions;
+  },
+  // 点击联想建议列表中的某一项
+  selectSuggestion: function(e) {
+    const selectedItem = e.currentTarget.dataset.item;
+    console.log(selectedItem);
+    // 跳转到搜索结果页面，并携带选中的联想建议项进行搜索
+    wx.navigateTo({
+      url: '/pages/searchResults/searchResults?keyword=' + selectedItem
+    });
+  },
+  // 搜索函数，在用户按下回车键或者点击搜索建议列表中的某一项时触发
+  handleInputConfirm: function(e) {
+    const inputValue = e.detail.value;
+    // 跳转到搜索结果页面，并携带选中的联想建议项进行搜索
+    wx.navigateTo({
+      url: '/pages/searchResults/searchResults?keyword=' + inputValue
+    });
+  },
+    //取消搜索
     onCancel(){
       this.triggerEvent('cancel');
     },
     //清除输入内容
     onClearTap(){
       this.setData({
-        value: ''
+        value: '',
+        showSuggestions:false
       });
       // this.triggerEvent('clear');
     },
-    //处理联想关键词列表的点击事件
+
+    //deprecated 处理联想关键词列表的点击事件
     handleItemTap(event){
       const index = event.currentTarget.dataset.index;
       const item = this.data.searchResult[index];

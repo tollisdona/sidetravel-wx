@@ -1,2 +1,2 @@
 <!--pages/message/index.wxml-->
-<navigation-bar></navigation-bar>
+<navigation-bar title="私信" titlesize="17"></navigation-bar>

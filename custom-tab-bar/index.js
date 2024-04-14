@@ -24,10 +24,10 @@ Component({
       },
       {
         "pagePath": "pages/playmate/index",
-        "text": "游伴",
+        "text": "伴游",
         "icon":"/images/customer-group.svg",
         "icons":"/images/customer-group-fill.svg",
-        "iconSize":55
+        "iconSize":50
       },
       {
         "pagePath": "pages/moment/index",
@@ -47,7 +47,7 @@ Component({
         "text": "个人信息",
         "icon":"/images/user.svg",
         "icons":"/images/user-fill.svg",
-        "iconSize":55
+        "iconSize":50
       }
     ]
   },
@@ -59,9 +59,15 @@ Component({
     switchTab(e){
       const data = e.currentTarget.dataset;
       console.log(data);
-      wx.switchTab({
-        url: "/"+data.path,
-      })
+      if(data.index === 2){
+        wx.navigateTo({
+          url: '/pages/moment-edit/index',
+        })
+      }else{
+        wx.switchTab({
+          url: "/"+data.path,
+        })        
+      }
     }
   }
 })

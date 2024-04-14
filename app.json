@@ -1,20 +1,24 @@
 {
   "pages": [
     "pages/playmate/index",
-    "pages/moment/index",
     "pages/square/square",
-    "pages/start/start",
     "pages/userinfo/index",
+    "pages/moment/index",
+    "pages/start/start",
     "pages/index/index",
     "pages/logs/logs",
     "pages/location/index",
     "pages/search/index",
     "pages/message/index",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/playpost/index",
+    "pages/playselect/index",
+    "pages/moment-edit/index",
+    "pages/mateinfo/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#000",
     "navigationStyle": "custom",
     "backgroundTextStyle": "light"
   },

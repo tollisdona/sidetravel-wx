@@ -1,0 +1,17 @@
+/* pages/playselect/index.wxss */
+Page{
+  background-color: #f2f5fa;
+}
+.content{
+  display: flex;
+  flex-direction: column;
+}
+
+.date{
+  margin-bottom: 30rpx;
+}
+.button{
+  display: inline-flex;
+  justify-content: center;
+  margin-top: 50rpx;
+}

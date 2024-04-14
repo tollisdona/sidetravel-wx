@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-calendar": "/miniprogram_npm/@vant/weapp/calendar/index",
+    "address":"/components/address/address",
+    "van-field":"/miniprogram_npm/@vant/weapp/field/index",
+    "van-cell-group":"/miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-button":"/miniprogram_npm/@vant/weapp/button/index",
+    "van-cell":"/miniprogram_npm/@vant/weapp/cell/index",
+    "van-icon":"/miniprogram_npm/@vant/weapp/icon/index",
+    "van-uploader":"/miniprogram_npm/@vant/weapp/uploader/index"
+  }
+}

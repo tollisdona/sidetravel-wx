@@ -3,6 +3,7 @@ page {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #f2f5fa;
 }
 .view-bias{
   display:flex;
@@ -45,7 +46,8 @@ page {
 }
 
 scroll-view {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #f2f5fa;
 }
 swiper-item{
   display: flex;

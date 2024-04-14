@@ -1,0 +1,43 @@
+<!--pages/moment-edit/index.wxml-->
+<navigation-bar title="编辑动态"></navigation-bar>
+<view class="topbar">
+  <van-button size="small" round
+  custom-style="width:100rpx;"
+  color="#DDE6ED">取消</van-button>
+  <van-button size="small" round 
+  custom-style="width:100rpx;" 
+  color="linear-gradient(to right, #FF7E5F, #FF6E7F)">发布</van-button>
+</view>
+<view class="content">
+  <textarea placeholder="分享你的旅游动态..." maxlength="-1" focus="{{focus}}"></textarea>
+</view>
+<view class="media pick">
+  <van-uploader file-list="{{ fileList }}" accept="media" 
+  capture
+  multiple
+  preview-image
+  preview-full-image
+  show-upload
+  deletable
+  showmenu
+  preview-size="200rpx"
+  max-count="9"
+  max-size="1024000000"
+  image-fit="scaleToFill"
+  video-fit="contain"
+  bind:after-read="afterRead" />
+</view>
+<view class="foot">
+  <!-- <view class="label"> -->
+  <!-- <van-icon name="guide-o" />标签</view> -->
+  <!-- <image src="/images/discount.svg" />标签</view>  -->
+  <van-cell-group>
+  <van-field label="标签" left-icon="flag-o" readonly is-link bind:tap="onTapFlag" />
+  <van-field label="位置" left-icon="guide-o" is-link readonly bind:tap="onTapPosition" />
+  </van-cell-group>
+
+  <!-- </view> -->
+  <!-- <view class="position"> -->
+  <!-- <image src="/images/location.svg" />位置</view> -->
+
+</view>
