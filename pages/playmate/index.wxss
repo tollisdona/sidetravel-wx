@@ -1,17 +1,26 @@
 /* pages/playmate/index.wxss */
+page{
+  background-color: #f2f5fa;
+}
 .area{
   display: flex;
   flex-direction: column;
+  height:100vh;
 }
 .tabs{
   display: flex;
   flex-direction: row;
   width: 100%;
   font-size: 30rpx;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
   /* justify-content:space-around; */
   align-items: center;
-  border: blue 1px solid;
-
+  border: #cccccc 1px solid;
+}
+.tabs .active{
+  font-weight: bolder;
 }
 .tabs .item{
   flex:1;
@@ -21,10 +30,21 @@
 }
 .tabs .bar{
   width: 1rpx; 
-  border-right: solid red 2px;
+  border-right: solid #cccccc 2px;
   height:30rpx;
 }
 .content{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 30rpx; */
+  /* margin-right: 30rpx; */
   /* 留出custom-tab-bar的高度 */
-  margin-bottom: 120rpx; 
+  margin-bottom: 300rpx;
+}
+
+.content .post{
+  flex:1;
+  display: flex;
+  flex-direction: column;
 }

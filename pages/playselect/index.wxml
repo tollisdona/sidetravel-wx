@@ -1,0 +1,29 @@
+<!--pages/playselect/index.wxml-->
+<navigation-bar title="筛选"></navigation-bar>
+<view class="content">
+  <van-cell-group inset class="date">
+    <van-field
+    label="时间"
+    value="{{date}}"
+    icon="calendar-o"
+    input-align="right"
+    placeholder="不限"
+    clearable
+    bind:click-icon="onDisplay">
+    </van-field>
+   <van-calendar
+  show="{{ showDate }}"
+  type="range"
+  bind:close="onClose"
+  bind:confirm="onConfirm"
+  color="#77B0AA"
+/>
+  </van-cell-group>
+  <van-cell-group inset class="from to">
+      <address mustfFillIn="true" optionValue="{{from}}" label="出发地" placeholder="不限" title="选择出发地"></address>
+      <address mustfFillIn="true" optionValue="{{to}}" label="目的地" placeholder="不限" title="选择目的地"></address>
+  </van-cell-group>
+  <view class="button">
+    <van-button round type="info" color="#9AD0C2" custom-style="width:200rpx" bind:tap="onFinish">完成</van-button>
+  </view>
+</view>

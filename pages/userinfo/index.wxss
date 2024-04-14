@@ -1,15 +1,82 @@
 /* pages/UserInfo/index.wxss */
-Page{
-  display: flex;
-  height: 100vh;
+page{
+  background-color: #f2f5fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.tab-1{
+.model{
+  margin: 20rpx 30rpx;
+  border-radius: 50rpx;
+  background-color: #ffffff;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 30rpx 50rpx;
 }
+.user-avatar{
+  height: 150rpx;
+  width: 150rpx;
+  margin-right: 30rpx;
+  border-radius: 25rpx;
+  border: fuchsia 1px solid;
+}
+.rig-time{
+  color: grey;
+}
+.user-avatar image{ 
+  border: rgb(245, 205, 255) 1px solid;
+}
+.user-info text{
+  margin-bottom: 10rpx;
+  font-size: 30rpx;
+}
+.username{
+  font-weight: bold;
+  margin-right:20rpx;
+}
+.gender image{
+  width: 30rpx;
+  height: 20rpx;
+}
+.gender{
+  padding:6rpx 15rpx;
+  border-radius: 15rpx;
+}
+.male{
+  background-color: #B4D2FF;
+}
+.female{
+  background-color: #FFD1E3;
+}
+/* .medal{
+  padding:5rpx 15rpx;
+  background: -webkit-linear-gradient(bottom, #4D72AA, #8961A1, #995FF8);
+  border-radius: 20rpx;
+  border: indianred 1px solid;
+} */
 .user-info{
+  flex:1;
   display: flex;
   flex-direction: column;
   align-items: start;
+}
+.model.card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.model.card .item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10rpx;
+}
+.item image{
+  width: 80rpx;
+  height:80rpx;
+}
+
+.model.option{
+  font-weight: bold;
 }

@@ -50,6 +50,10 @@ Component({
       type: Number,
       value: 1
     },
+    titlesize: {
+      type:String,
+      value:''
+    }
   },
   /**
    * 组件的初始数据

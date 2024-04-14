@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/tollisdona/sidetravel-wx#readme",
   "dependencies": {
-    "lin-ui": "^0.9.13"
+    "@vant/area-data": "^1.5.1",
+    "@vant/weapp": "^1.11.4"
   }
 }

@@ -1,0 +1,5 @@
+<!--components/address/address.wxml-->
+<van-field value="{{ fieldValue }}" input-align="right" label="{{label}}" placeholder="{{placeholder}}" clearable icon="location-o" bind:click-icon="onClick" />
+<van-action-sheet show="{{ show }}">
+    <van-area area-list="{{ areaList }}" title="{{title}}" columns-num="{{2}}" bind:confirm="onConfirm" bind:cancel="onClose" />
+</van-action-sheet>

@@ -11,10 +11,10 @@
       <swiper-item class="swiper-item" wx:for="{{tablist}}" wx:key="index">
       <scroll-view  
       scroll-y
-  style="flex:1;width: 100%; overflow: hidden; padding: {{padding}}px; padding-bottom: 0;"
-  type="custom"
-  show-scrollbar="{{false}}">
-  <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="4" main-axis-gap="4">
+      style="flex:1;width: 100%; overflow: hidden; padding: {{padding}}px; padding-bottom: 0;"
+      type="custom"
+      show-scrollbar="{{false}}">
+      <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="4" main-axis-gap="4">
       <card
         wx:for="{{gridList}}"
         wx:key="id"

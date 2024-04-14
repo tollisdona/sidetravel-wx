@@ -5,53 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    safeTop:0,
-    focus:false,
-    isFull:false,
-    mediaList:[
-      {
-        isPic:'false',
-        url:'https://media.w3.org/2010/05/sintel/trailer.mp4'
-      }, {
-        url:'/images/add-btn-fill.svg'
-      },
-      {
-        url:'/images/add-btn-fill.svg'
-      }, {
-        url:'/images/add-btn-fill.svg'
-      },
-      {
-        url:'/images/add-btn-fill.svg'
-      }, {
-        url:'/images/add-btn-fill.svg'
-      },
-      {
-        url:'/images/add-btn-fill.svg'
-      }, {
-        url:'/images/add-btn-fill.svg'
-      },
-      
-    ]
   },
-
-  setTabbar(){
-    if (typeof this.getTabBar === 'function' ) {
-      this.getTabBar((tabBar) => {
-        tabBar.setData({
-          selected: 2
-        })
-      })
-    }
-},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    //设置topbar在胶囊按钮下方
-  const buttonInfo = wx.getMenuButtonBoundingClientRect();
-  this.setData({
-    safeTop:buttonInfo.bottom
-  })
+    wx.navigateTo({
+      url: '/pages/moment-edit/index',
+    })
+  //   //设置topbar在胶囊按钮下方
+  // const buttonInfo = wx.getMenuButtonBoundingClientRect();
+  // this.setData({
+  //   safeTop:buttonInfo.bottom
+  // })
+
   },
 
   /**
@@ -65,7 +32,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.setTabbar();
+    // this.setTabbar();
+
   },
 
   /**
