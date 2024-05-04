@@ -1,0 +1,41 @@
+<!--pages/UserInfo/index.wxml-->
+<navigation-bar back="{{false}}" title="用户"></navigation-bar>
+
+<view>
+  <view class="model login" wx:if="{{!hasLogin}}" bind:tap="dologin">
+  点击登录
+  </view>
+  <view class="model" wx:if="{{hasLogin}}">
+  <image class="user-avatar" src="{{userinfo.avatar}}" />
+  <view class="user-info">
+    <view style="display:flex; flex-direction: row; align-items: center;">
+      <text class="username">{{userinfo.username}}</text>
+      <!-- <view class="gender male" wx:if="{{userinfo.gender === 0}}" >
+      <image src="/images/male1.svg" />
+      </view>
+      <view class="gender female" wx:if="{{userinfo.gender === 1}}" >
+      <image src="/images/female1.svg"/>      
+      </view> -->
+      <image src="/images/male1.svg" class="gender male" wx:if="{{userinfo.gender === 0}}" />
+      <image src="/images/female1.svg" class="gender female" wx:if="{{userinfo.gender === 1}}" />
+    </view>
+    <text class="rig-time">{{userinfo.addTime}}</text>
+    <text> 关注 {{userinfo.follow}}  粉丝 {{userinfo.follower}}</text>
+  </view>
+  </view>
+
+</view>
+<view class="model card">
+  <view class="item" wx:for="{{funcList}}" wx:key="index">
+    <image src="{{item.name}}" />   
+    <text>{{item.txt}}</text>
+    </view>
+</view>
+<view class="model option" wx:for="{{optionList}}" wx:key="index">
+  <view class="title" bind:tap="onTapOption">{{item.title}} </view>
+</view>
+<view class="model logout" wx:if="{{hasLogin}}" >
+  <view class="logout"bind:tap="dologout">
+  退出登录
+  </view>
+</view>

@@ -29,6 +29,13 @@ const contents = [
   'Hayya Hayya！我用小程序啦',
 ]
 
+const mycontent=[
+  '青岛两天一晚旅游攻略！',
+  '西安跟团4天3晚~',
+  '"蓝天碧海，白浪涌动。探索青岛的魅力，两天一晚的完美行程',
+  "千年古都，历史与现代的交融之地。跟团游西安，尽情领略历史的厚重与文化的繁荣。"
+]
+
 const nicknames = [
   'REX',
   'BINNIE',
@@ -107,7 +114,29 @@ export const generateGridList = (childCount, columns) => {
   }
   return ans
 }
+export const fixGridList = (list) =>{
+  console.log("fixlist",list)
+  const ans =[]
+  for(let i = 0; i< list.length; i++){
+    const ratioIdx = Math.floor(Math.random()* imageRatio.length)
+    const ratio = imageRatio[ratioIdx]
 
+    const img = list[i].media[0]
+
+    if(typeof(list[i].media[0]) == "pic"){
+    }else{
+      const img = list[i].media[0]
+    }
+    ans.push({
+      id:i,
+      src:img,
+      ...ratio,
+      info:list[i]
+    })
+  }
+  console.log("ans:",ans)
+  return ans
+}
 
 export const clamp = function (cur, lowerBound, upperBound) {
   'worklet';

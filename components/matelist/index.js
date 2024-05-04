@@ -27,17 +27,10 @@ Component({
    */
   methods: {
     onClickItem(){
+    console.log("infoffffff",this.data.item)
       wx.navigateTo({
-        url: '/pages/mateinfo/index?item='+this.data.item,
-      })
-
-
-
-
-
-
-
-      
+        url: `/pages/mateinfo/index?item=${encodeURIComponent(JSON.stringify(this.data.item))}`,
+      })      
     }
   }
 })

@@ -20,8 +20,8 @@
 />
   </van-cell-group>
   <van-cell-group inset class="from to">
-      <address mustfFillIn="true" optionValue="{{from}}" label="出发地" placeholder="不限" title="选择出发地"></address>
-      <address mustfFillIn="true" optionValue="{{to}}" label="目的地" placeholder="不限" title="选择目的地"></address>
+      <address mustfFillIn="true" optionValue="{{from}}" label="出发地" placeholder="不限" title="选择出发地"  bind:tap="clickFrom"></address>
+      <address mustfFillIn="true" optionValue="{{to}}" label="目的地" placeholder="不限" title="选择目的地"  bind:tap="clickTo"></address>
   </van-cell-group>
   <view class="button">
     <van-button round type="info" color="#9AD0C2" custom-style="width:200rpx" bind:tap="onFinish">完成</van-button>

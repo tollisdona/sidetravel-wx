@@ -37,7 +37,7 @@ export const lerp = (begin, end, t) => {
   'worklet'
   return begin + (end - begin) * t
 }
-
+// buidler 函数
 const ScaleTransitionRouteBuilder = (routeContext) => {
   const {
     primaryAnimation,
@@ -47,7 +47,9 @@ const ScaleTransitionRouteBuilder = (routeContext) => {
 
   const shareEleTop = shared(0)
   routeContext.shareEleTop = shareEleTop
-
+  /*
+  * Curve Animation封装进入和退出时的动画曲线 
+  */
   const _curvePrimaryAnimation = CurveAnimation({
     animation: primaryAnimation,
     animationStatus: primaryAnimationStatus,
@@ -65,7 +67,9 @@ const ScaleTransitionRouteBuilder = (routeContext) => {
       globalThis['RouteCardDestRect'].value = undefined
     }
   }
-
+/**
+  * primaryAnimation控制页面进入和退出动画
+  */
   const handlePrimaryAnimation = () => {
     'worklet'
     const status = primaryAnimationStatus.value

@@ -1,1 +1,14 @@
-/* pages/sitemap/index.wxss */
+/* pages/location/index.wxss */
+page {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+page, view {
+  box-sizing: border-box;
+}
+#myMap{
+  width: 100vw;
+  height:100vh;
+}

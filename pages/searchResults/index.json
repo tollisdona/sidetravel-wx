@@ -2,10 +2,9 @@
   "usingComponents": {
     "card":"/components/card/card",
     "navigation-bar":"/components/navigation-bar/navigation-bar",
-    "custom-bar":"/custom-tab-bar/index"
+    "custom-bar":"/custom-tab-bar/index","search-bar":"/components/search-bar/index"
     },
   "renderer": "skyline",
   "disableScroll": true,
-  "navigationStyle": "custom",
-  "enablePullDownRefresh": true
+  "navigationStyle": "custom"
 }

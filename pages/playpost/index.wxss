@@ -1,4 +1,6 @@
 /* pages/playpost/index.wxss */
+@import '/miniprogram_npm/@vant/weapp/common/index.wxss';
+
 Page{
   /* background-color: #F6F5F5; */
   background-color: #f2f5fa;

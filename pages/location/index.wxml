@@ -1,6 +1,2 @@
-<!--pages/sitemap/index.wxml-->
-
-<view>
-<text>pages/sitemap/index.wxml</text>
-
-</view>
+<!--pages/location/index.wxml-->
+  <map id="myMap" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" markers="{{markers}}" bindmarkertap="gotoScenicSpot" include-points="{{includePoints}}"></map>

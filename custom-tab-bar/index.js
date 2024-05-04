@@ -43,7 +43,7 @@ Component({
         "icons":"/images/position-fill.svg",
       },
       {
-        "pagePath": "pages/userinfo/index",
+        "pagePath": "pages/userinfo/index/index",
         "text": "个人信息",
         "icon":"/images/user.svg",
         "icons":"/images/user-fill.svg",

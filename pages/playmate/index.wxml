@@ -2,18 +2,17 @@
 <navigation-bar title="约伴" homeButton="{{true}}"></navigation-bar>
 <view class="area">
   <view class="tabs">
-    <view class="post item {{currentTab === 'post'?active:''}}" bind:tap="tabTapP" data-tab="post" >发布</view>
+    <view class="post item" bind:tap="tabTapP">发布</view>
     <view class="bar"></view>
-    <view class="select item {{currentTab === 'select'?active:''}}" bind:tap="tabTapS" data-tab="select" bind>筛选</view>
+    <view class="select item {{currentTab === 'select'? 'active' :''}}" bind:tap="tabTapS" data-tab="select" bind>筛选</view>
   </view>
   <view class="content">
-  <view class="post item" wx:if="{{currentTab === 'post'}}">
+  <view class="post item">
     <view class="empty" wx:if="{{postList === ''}}">
-        <view>还没有发布过约伴信息，快去发布吧!</view>
+        <view>还没有人发布过约伴信息，快去发布吧!</view>
         <view><button type="primary" style="width: 100rpx; height: 50rpx;margin-top: 50rpx; border-radius:50rpx; background-color: #9AD0C2;" bind:tap="onClickPost">
         发布</button>
         </view>
-    <mate-list wx:for="{{postList}}"wx:key="id" index="{{index}}" item="{{item}}"></mate-list>
     </view>
     <scroll-view
       scroll-y
@@ -22,13 +21,10 @@
       show-scrollbar="{{false}}"
       refresher-enabled="{{true}}"
       refresher-default-style="white"
-    >    
-    <mate-list wx:for="{{postList}}"wx:key="index" item="{{item}}"></mate-list>
-
+    >
+    <mate-list wx:if="{{status === 'select'}}" wx:for="{{selectList}}" wx:key="index" item="{{item}}"></mate-list>
+    <mate-list  wx:if="{{status === 'post'}}"  wx:for="{{postList}}"wx:key="index" item="{{item}}"></mate-list>
     </scroll-view>
-  </view>
-  <view class="select item" wx:if="{{currentTab === 'select'}}">
-  <view wx:for="{{selectList}}"></view>
   </view>
   </view>
 </view>

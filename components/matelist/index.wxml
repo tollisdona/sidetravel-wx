@@ -4,30 +4,26 @@
   <image src="/images/calendar.svg" />
   <view class="info"> 
    <text class="title">往返时间:</text>
-   <text class="value">{{item.date}}></text>  </view>
+   <text class="value">{{item.date}}</text>  </view>
   </view>
   <view class="row">
   <image src="/images/calendar.svg" />
   <view class="info">
    <text class="title">目的地:</text> 
-   <text class="value">{{item.to}}></text>  </view>
+   <text class="value">{{item.to}}</text>  </view>
   </view>
   <view class="row">
   <image src="/images/calendar.svg" />
   <view class="info des">
-   <text class="value des">{{item.description}}></text>   </view>
+   <text class="value des">{{item.description}}</text>   </view>
   </view>
 
   <!-- 用户信息 -->
   <view class="foot">
     <image class="avatar" src="{{item.user.avatar}}" />
     <view class="username">{{item.user.name}}</view>
-    <view class="gender male" wx:if="{{item.user.gender === '0'}}" >
-    <image style="height:20rpx"src="/images/male.svg" />
-    </view>
-    <view class="gender female" wx:if="{{item.user.gender === '1'}}" >
-    <image src="/images/female.svg"/>      
-    </view>
+    <image src="/images/male1.svg" class="gender male" wx:if="{{item.user.gender === 0}}" />
+    <image src="/images/female1.svg" class="gender female" wx:if="{{item.user.gender === 1}}" />
     <view class="medal" wx:if="{{!item.medal === ''}}"></view>
     <view class="posttime">{{item.posttime}}</view>
   </view>

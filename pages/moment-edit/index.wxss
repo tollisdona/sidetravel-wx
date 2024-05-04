@@ -8,13 +8,16 @@ Page{
   flex-direction: column;
   margin:5rpx 50rpx 10rpx 50rpx;
 }
-.topbar{
+.footbtn{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin:5rpx 30rpx 10rpx 30rpx;
+  justify-content: center;
+  margin:30rpx 0rpx;
+  position: absolute;
+  left: 350rpx;
+  right: 350rpx;
+  bottom: 20px;
 }
-
 .content textarea{
   width:100%;
   height: 300rpx;
@@ -72,9 +75,3 @@ Page{
   width: 50rpx;
   height: 50rpx;
 }
-/* .foot .label{
-  color: firebrick;
-}
-.foot .position{
-  color: blue;
-} */

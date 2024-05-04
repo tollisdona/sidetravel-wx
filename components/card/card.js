@@ -22,6 +22,10 @@ Component({
       type: Number,
       value: 0
     },
+    heightType:{
+      type: Number,
+      value:0
+    }
   },
   lifetimes: {
     created() {
@@ -91,8 +95,9 @@ Component({
 
   methods: {
     navigateTo(e) {
-      const { index, url, content, ratio, nickname } = e.currentTarget.dataset
-      const urlContent = `../../pages/detail/detail?index=${index}&url=${encodeURIComponent(url)}&content=${content}&ratio=${ratio}&nickname=${nickname}`
+      const { index, url, ratio, info} = e.currentTarget.dataset
+      console.log("detaiL",e.currentTarget.dataset)
+      const urlContent = `../../pages/detail/detail?index=${index}&url=${encodeURIComponent(url)}&ratio=${ratio}&info=${encodeURIComponent(JSON.stringify(info))}`
       wx.navigateTo({
         url: urlContent,
         routeType: 'CardScaleTransition',

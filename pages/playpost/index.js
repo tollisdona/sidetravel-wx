@@ -36,5 +36,4 @@ Page({
       description:event.detail
     })
   }
- 
 })

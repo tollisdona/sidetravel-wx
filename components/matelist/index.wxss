@@ -41,23 +41,13 @@ image{
 .foot view{
   margin-left: 20rpx;
 }
-
 .avatar{
   border-radius: 40rpx;
 }
-.gender image{
-  width: 20rpx;
-  height: 10rpx;
-}
 .gender{
-  padding:6rpx 15rpx;
-  border-radius: 15rpx;
-}
-.male{
-  background-color: #B4D2FF;
-}
-.female{
-  background-color: #FFD1E3;
+  margin-left: 20rpx;
+  width: 40rpx;
+  height: 30rpx;
 }
 .posttime{
   color:grey;

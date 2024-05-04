@@ -2,59 +2,66 @@
 Page({
   data: {
     currentTab: 'post', // 默认显示发布内容
+    status:'post',
     date: '', // 默认日期选择器显示的日期
     postList:[
       {
-        "date": "2024-05-01",
-        "to": "巴黎",
-        "description": "寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎！寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣!",
+        "date": "05月01日-05月03日",
+        "to": "北京",
+        "from":"beijing",
+        "description": "寻找旅游伴侣",
         "user": {
           "name": "小明",
           "avatar": "/images/user-fill.svg",
           "medal":[],
-          "gender":"0"
+          "gender":0
       },
         "posttime": "2024-04-15 10:30"
       },
       {
-        "date": "2024-05-01",
-        "to": "巴黎",
-        "description": "寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎！寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣!",
+        "date": "06月01日-06月03日",
+        "to": "西安",
+        "from":"beijing",
+        "description": "寻找旅游伴侣，一起探索!",
         "user": {
           "name": "小明",
           "avatar": "/images/user-fill.svg",
           "medal":[],
-          "gender":"0"
+          "gender":0
       },
-        "posttime": "2024-04-15 10:30"
+        "posttime": "2024-04-15 12:30"
       },
       {
-        "date": "2024-05-01",
+        "date": "7月01日-07月03日",
         "to": "巴黎",
-        "description": "寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎！寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣!",
+        "from":"beijing",
+        "description": "寻找旅游伴侣，一起探索浪漫的巴黎寻找旅游伴侣!",
         "user": {
           "name": "小明",
           "avatar": "/images/user-fill.svg",
           "medal":[],
-          "gender":"0"
+          "gender":0
       },
-        "posttime": "2024-04-15 10:30"
+        "posttime": "2024-04-15 14:30"
       }
     ],
-    selectList:''
+    selectList:[]
   },
-  tabTapP: function (e) {
+  tabTapP: function () {
+    wx.navigateTo({
+      url: '/pages/playpost/index',
+    })
+  },
+  tabTapS: function(e){
     const tab = e.currentTarget.dataset.tab; // 获取当前点击的选项
     this.setData({
       currentTab: tab // 更新 currentTab 的值为当前点击的选项
     });
-    console.log("tab:",this.data.currentTab)
-  },
-  tabTapS: function(e){
     wx.navigateTo({
       url: '/pages/playselect/index',
     })
   },
+
   setTabbar(){
     if (typeof this.getTabBar === 'function' && this.getTabBar()) {
       this.getTabBar().setData({
@@ -62,6 +69,7 @@ Page({
       })
     }
   },
+
   onClickPost(){
     wx.navigateTo({
       url: '/pages/playpost/index',

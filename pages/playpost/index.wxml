@@ -21,7 +21,7 @@
   </van-cell-group>
   
   <van-cell-group inset class="from to">
-      <address mustfFillIn="true" optionValue="{{from}}" label="出发地" title="请选择出发地" placeholder="选择出发地" ></address>
+      <address mustfFillIn="true" optionValue="{{from}}" label="出发地" title="请选择出发地" placeholder="选择出发地"></address>
       <address mustfFillIn="true" optionValue="{{to}}" label="目的地" title="请选择目的地" placeholder="选择目的地"></address>
       <van-field 
       value="{{description}}"
@@ -29,6 +29,7 @@
       show-word-limit
       maxlength="100"
       placeholder="描述自己的特点、行程计划，或者旅伴的特点等……"
+      class="van-ellipsis"
       type="textarea"
       autosize
       bind:input="inputDes"

@@ -1,2 +1,47 @@
 <!--pages/mateinfo/index.wxml-->
-<text>pages/mateinfo/index.wxml</text>
+<navigation-bar title="详细信息" ></navigation-bar>
+  <!-- 用户信息 -->
+<view class="area">
+  <view class="header">
+    <van-image class="avatar" fit="cover" round="{{true}}" width="80rpx" height="80rpx"  src="{{item.user.avatar}}" />
+    <view class="uinfo">
+    <view class="r1">
+    <view class="username">{{item.user.name}}</view>
+    <image src="/images/male1.svg" class="gender male" wx:if="{{item.user.gender === 0}}" />
+    <image src="/images/female1.svg" class="gender female" wx:if="{{item.user.gender === 1}}" />
+    </view>
+    <view class="r2">
+      <view class="posttime">{{item.posttime}}</view>
+    </view>
+    </view>
+  </view>
+  <van-cell-group class="body">
+    <van-cell icon="/images/calendar.svg" title="往返时间" value="{{item.date}}"> </van-cell>
+    <van-cell icon="guide-o" title="目的地" value="{{item.to}}"> </van-cell>
+    <van-cell icon="wap-home-0" title="出发地" value="{{item.from}}"> </van-cell>
+    <van-cell icon="records-o" title="描述" value="{{item.des}}"> </van-cell>
+  </van-cell-group>
+
+  <!-- <view class="row">
+  <image src="/images/calendar.svg" />
+  <view class="info"> 
+   <text class="title">往返时间:</text>
+   <text class="value">{{item.date}}></text>  </view>
+  </view>
+  <view class="row">
+  <image src="/images/calendar.svg" />
+  <view class="info">
+   <text class="title">目的地:</text> 
+   <text class="value">{{item.to}}></text>  </view>
+  </view>
+  <view class="row">
+  <image src="/images/calendar.svg" />
+  <view class="info des">
+   <text class="value des">{{item.description}}</text>   </view>
+  </view>
+  <view class="menu">
+    <van-icon name="star-o"></van-icon>
+    <van-icon name="ellipsis"></van-icon>
+  </view> -->
+
+</view>

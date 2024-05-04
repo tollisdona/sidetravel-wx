@@ -25,25 +25,14 @@ Component({
       type: String,
       value: '',
     },
-    content: {
-      type: String,
-      value: '',
-    },
     ratio: {
       type: Number,
       value: 1
-    },
-    nickname: {
-      type: String,
-      value: '',
     }
   },
   data: {
     swiperHeight: 0,
-    imageList: [
-      'https://res.wx.qq.com/op_res/BqgN85sXxTbk1kynEEihr7lTnuuiwGJPwwjxDVYbDolj05sAxd5cOESVZt4_nl1KwzkiDWTvG56LuhE45xAaZA',
-      'https://res.wx.qq.com/op_res/Ak_VAL-nLvq6laAMVJA86rf3NAZ2vY86v757dfja16Z95xtoxk4BWWDuTCPT-pD1SjGGIddUsH0l6C8Yu5LJlw'
-    ],
+    info:{},
     safeTop:0,
     safeBottom:0,
     system:''
@@ -59,9 +48,16 @@ Component({
       console.log("system:",res.brand)
       console.log("system:",res)
     },
+    ready(){
+      var page = getCurrentPages()[getCurrentPages().length-1]
+      console.log("page:",page.options)
+      this.setData({
+        info:JSON.parse(decodeURIComponent(page.options.info))
+      })
+    },
     attached() {
       this.setData({
-        swiperHeight: screenWidth / this.data.ratio
+        swiperHeight: screenWidth / this.data.ratio,
       })
       this.customRouteContext = wx.router?.getRouteContext(this);
       const { 

@@ -59,7 +59,6 @@ Component({
           })
           this.handleTap()
           console.log("省市区为：",address)
-          
       },
 
       handleTap() {

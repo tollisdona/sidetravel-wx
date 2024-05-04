@@ -1,6 +1,8 @@
 // pages/square.js
 import { installRouteBuilder } from '../list/route'
-import { generateGridList, compareVersion } from '../list/utils'
+import { generateGridList,mygenerateGridList, compareVersion, fixGridList } from '../list/utils'
+import util from '../../utils/util'
+import api from '../../config/api'
 
 const { screenWidth } = wx.getSystemInfoSync()
 Page({
@@ -22,8 +24,9 @@ Page({
     currentTab:1,
     sliderOffsets:[],
     padding: 4,
-    gridList: generateGridList(10, 2),
+    gridList:[],
     cardWidth: (screenWidth - 4 * 2 - 4) / 2, // 减去间距
+    isTriggered:true
   },
   setTabbar(){
     if (typeof this.getTabBar === 'function' ) {
@@ -42,7 +45,26 @@ Page({
         showCancel: false
       })
     }
+    this.indexRequst()
     installRouteBuilder()
+  },
+  indexRequst(){
+    // 请求首页动态list
+    util.request(api.NoteHotList,{},"POST").then(res =>{
+      console.log("得到热门列表,",res)
+      this.setData({
+        gridList: fixGridList(res.data.list)
+      })
+      console.log("GridlistL",this.data.gridList)
+    })
+  },
+  getMore(){
+
+  },
+  refreshHandler(){
+    this.setData({
+      isTriggered:false
+    })
   },
   tabTap(event){
     console.log("点击tabs",event.currentTarget.dataset.index)
@@ -50,9 +72,6 @@ Page({
     this.setData({
       currentTab:index
     })
-    //以下写法无法setdata
-    this.data.currentTab = index;
-    this.data.offsetLeft = event.currentTarget.offsetLeft;
   },
   clickSearch(){
     wx.navigateTo({
@@ -68,7 +87,6 @@ Page({
     this.setData({
       currentTab: event.detail.current
     })
-
   },
   /**
    * 生命周期函数--监听页面加载
@@ -92,10 +110,6 @@ Page({
     })
   },
 
-  // 处理点击tab
-  // onTabClick(e) {
-    
-  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -124,12 +138,21 @@ Page({
   onUnload() {
 
   },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    // 请求首页动态list
+    util.request(api.NoteHotList,{},"POST").then(res =>{
+      console.log("得到热门列表,",res.data.list)
+      this.setData({
+        gridList: fixGridList(res.data.list,2)
+      })
+      console.log("Gridlist",this.data.gridList)
+    })
+    wx.hideNavigationBarLoading() //完成停止加载
+    wx.stopPullDownRefresh()
   },
 
   /**

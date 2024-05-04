@@ -76,7 +76,7 @@ Component({
     },
     // 模拟本地数据的联想匹配函数
   getLocalSuggestions: function(inputValue) {
-    const suggestionsData = ['苹果', '香蕉', '橙子', '西瓜', '草莓','草东','香草','桃子'];
+    const suggestionsData = ['济南', '济南打卡地', '攻略','青岛攻略', '西安攻略', '大明湖风景区','山东枣庄','山东济宁'];
     const filteredSuggestions = suggestionsData.filter(item => item.includes(inputValue));
     return filteredSuggestions;
   },
@@ -86,7 +86,7 @@ Component({
     console.log(selectedItem);
     // 跳转到搜索结果页面，并携带选中的联想建议项进行搜索
     wx.navigateTo({
-      url: '/pages/searchResults/searchResults?keyword=' + selectedItem
+      url: '/pages/searchResults/index?keyword=' + selectedItem
     });
   },
   // 搜索函数，在用户按下回车键或者点击搜索建议列表中的某一项时触发

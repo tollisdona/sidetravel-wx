@@ -12,19 +12,25 @@ page{
   justify-content: space-between;
   padding: 30rpx 50rpx;
 }
+
+.model .login{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content: center;
+  /*撑满width*/
+  flex:1;
+}
 .user-avatar{
   height: 150rpx;
   width: 150rpx;
   margin-right: 30rpx;
   border-radius: 25rpx;
-  border: fuchsia 1px solid;
 }
 .rig-time{
   color: grey;
 }
-.user-avatar image{ 
-  border: rgb(245, 205, 255) 1px solid;
-}
+
 .user-info text{
   margin-bottom: 10rpx;
   font-size: 30rpx;
@@ -33,9 +39,13 @@ page{
   font-weight: bold;
   margin-right:20rpx;
 }
-.gender image{
-  width: 30rpx;
-  height: 20rpx;
+.gender{
+  width: 40rpx;
+  height: 30rpx;
+}
+/* .gender image{
+  width: 20rpx;
+  height: 15rpx;
 }
 .gender{
   padding:6rpx 15rpx;
@@ -46,7 +56,7 @@ page{
 }
 .female{
   background-color: #FFD1E3;
-}
+} */
 /* .medal{
   padding:5rpx 15rpx;
   background: -webkit-linear-gradient(bottom, #4D72AA, #8961A1, #995FF8);

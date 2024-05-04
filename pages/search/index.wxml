@@ -1,10 +1,11 @@
 <!--pages/search/index.wxml-->
 <view class="search">
 <navigation-bar back="{{false}}"></navigation-bar>
- <search-bar type="text" placeholder="搜索景点，攻略和路线" showCancel="{{true}}"
+<search-bar type="text" placeholder="搜索景点，攻略和路线" showCancel="{{true}}"
  bindsearch="handleSearch"
  bindcancel="onCancel"/>
 <view class="history" style="font-weight: 500rpx;">
   历史搜索记录
 </view>
 </view>
+
