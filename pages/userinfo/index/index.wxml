@@ -1,6 +1,5 @@
 <!--pages/UserInfo/index.wxml-->
 <navigation-bar back="{{false}}" title="用户"></navigation-bar>
-
 <view>
   <view class="model login" wx:if="{{!hasLogin}}" bind:tap="dologin">
   点击登录

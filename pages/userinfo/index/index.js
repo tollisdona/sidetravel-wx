@@ -91,6 +91,10 @@ Page({
         url: '/pages/userinfo/index/index'
       });
     }).catch(err =>{
+      wx.showToast({
+        title: '登陆失败',
+        icon: "none"
+      })
       console.log(err);
     });
   },

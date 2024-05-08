@@ -27,7 +27,7 @@
       value="{{description}}"
       label="描述"
       show-word-limit
-      maxlength="100"
+      maxlength="200"
       placeholder="描述自己的特点、行程计划，或者旅伴的特点等……"
       class="van-ellipsis"
       type="textarea"

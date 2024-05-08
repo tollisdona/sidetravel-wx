@@ -1,7 +1,8 @@
 <!--pages/moment-edit/index.wxml-->
 <navigation-bar title="编辑动态"></navigation-bar>
 <view class="content">
-  <textarea placeholder="分享你的旅游动态..." maxlength="-1" focus="{{focus}}"></textarea>
+  <textarea placeholder="分享你的旅游动态..." maxlength="1000" focus="{{focus}}" model:value="{{content}}">
+  </textarea>
 </view>
 <view class="media pick">
   <van-uploader file-list="{{ fileList }}"
@@ -15,7 +16,6 @@
   showmenu
   preview-size="200rpx"
   maxCount="9"
-  maxSize="1024000000"
   image-fit="scaleToFill"
   video-fit="contain"
   bind:after-read="afterRead"
@@ -23,13 +23,15 @@
 </view>
 <view class="foot">
   <van-cell-group>
-  <van-field label="标签" left-icon="flag-o" input-align="right" center="true"
-  readonly is-link bind:tap="onTapFlag" />
-  <van-field label="位置" left-icon="guide-o" value="{{address}}" input-align="right" center="true" size="large" is-link readonly bind:tap="onTapPosition" />
+  <!-- <van-field label="标签" left-icon="flag-o" input-align="right" center="true"
+  readonly is-link bind:tap="onTapFlag" /> -->
+  <van-field label="位置" left-icon="guide-o" value="{{position.name}}" input-align="right" center="true" size="large" is-link readonly bind:tap="onTapPosition" />
   </van-cell-group>
 </view>
 <view class="footbtn">
   <van-button size="normal" round 
   custom-style="width:200rpx;" 
-  color="linear-gradient(to right, #FF7E5F, #FF6E7F)">发布</van-button>
+  color="linear-gradient(to right, #FF7E5F, #FF6E7F)"
+  disabled="{{isClicked}}"
+  bind:click="onTapPost">发布</van-button>
 </view>

@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import '/miniprogram_npm/@vant/weapp/common/index.wxss';
 Page{
   background-color: #F2F5FA;
 }

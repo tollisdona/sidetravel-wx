@@ -33,29 +33,26 @@
 					</swiper>
 				</view>
 				<view class="detail-content">
-					<view class="detail-title">{{info.content}}</view>
           <view class="detail-p" style="padding-bottom: 20px;" />
 					<view class="detail-p">
           <text>{{info.content}}</text>
           </view>
-          <view class="detail-p" style="padding-bottom: 10px;" />
-					<view class="detail-p">🔸 Worklet 动画：能够在渲染线程同步运行动画相关逻辑。</view>
-					<view class="detail-p">🔸 手势系统：在渲染线程同步监听手势、执行手势相关逻辑；支持手势协商处理；</view>
-					<view class="detail-p">🔸 自定义路由：实现自定义路由动画和交互。</view>
-					<view class="detail-p">🔸 共享元素动画：将上一个页面的元素“共享”到下一个页面，并伴随着过渡动画。</view>
-				</view>
-        <view class="comment">
-        pinglunqu评论区——————————————————————————————————
-        </view>
+    			</view>
+        <comment class="comment" noteId="{{info.noteId}}"> </comment>
 			</scroll-view>
 			<view class="footer">
 				<view class="footer-content">
-					<input class="footer-input" placeholder="说点什么..." />
-					<span>
+					<input bindinput="bindKeyInput" type="text" confirm-type="send" bind:confirm="postComment" model:value="{{comment}}" bind:focus="checkLogin" class="footer-input" placeholder="说点什么..."  />
+          <span><text bind:tap="postComment">发送</text>
+          </span>
+          <span wx:if="{{!hasLogin}}">
+          <test class="share">分享</test>
+          </span>
+					<span wx:if="{{hasLogin}}">
 						<text class="footer-icon">❤</text>
 						{{info.likesCount}}
 					</span>
-					<span>
+					<span wx:if="{{hasLogin}}">
 						<text class="footer-icon">⭐️</text>
 						{{info.favoritesCount}}
 					</span>

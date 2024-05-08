@@ -45,10 +45,10 @@ Page({
         showCancel: false
       })
     }
-    this.indexRequst()
+    this.loadHotRequst()
     installRouteBuilder()
   },
-  indexRequst(){
+  loadHotRequst(){
     // 请求首页动态list
     util.request(api.NoteHotList,{},"POST").then(res =>{
       console.log("得到热门列表,",res)
@@ -58,10 +58,9 @@ Page({
       console.log("GridlistL",this.data.gridList)
     })
   },
-  getMore(){
 
-  },
   refreshHandler(){
+    
     this.setData({
       isTriggered:false
     })
@@ -144,6 +143,7 @@ Page({
   onPullDownRefresh() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
     // 请求首页动态list
+    console.log("下拉")
     util.request(api.NoteHotList,{},"POST").then(res =>{
       console.log("得到热门列表,",res.data.list)
       this.setData({

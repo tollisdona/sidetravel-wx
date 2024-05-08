@@ -1,8 +1,10 @@
 import { Curves, CurveAnimation, lerp } from '../list/route'
 import { clamp } from '../list/utils'
+import api from '../../config/api.js'
 
 const { screenWidth } = wx.getSystemInfoSync()
 const { shared, timing, Easing } = wx.worklet
+var app = getApp()
 
 const GestureState = {
   POSSIBLE: 0, // 0 此时手势未识别，如 panDown等
@@ -35,7 +37,9 @@ Component({
     info:{},
     safeTop:0,
     safeBottom:0,
-    system:''
+    system:'',
+    hasLogin:false,
+    comment:''
   },
   lifetimes: {
     created() {
@@ -47,6 +51,9 @@ Component({
       const res = wx.getSystemInfoSync()
       console.log("system:",res.brand)
       console.log("system:",res)
+      if(app.globalData.hasLogin){
+        this.setData({hasLogin:true})
+      }
     },
     ready(){
       var page = getCurrentPages()[getCurrentPages().length-1]
@@ -168,5 +175,78 @@ Component({
         }
       }
     },
+    checkLogin: function() {
+      if (!app.globalData.hasLogin) {  // Assuming isUserLoggedIn is a method that checks login status
+          wx.showToast({
+              title: '请先登录',
+              icon: 'none',
+              duration: 2000
+          });
+          setTimeout(() => {
+              wx.switchTab({
+                url: '/pages/userinfo/index/index',// Update this with the path to your login page
+              })
+          }, 500); // Wait for the toast to end before redirecting
+          return;
+      }
+      // If the user is logged in, do nothing, let the input gain focus naturally
+    },
+    postComment: function() {
+    if (!this.data.comment) {
+        wx.showToast({
+            title: '评论内容不能为空',
+            icon: 'none'
+        });
+        return;
+    }
+    let that =this
+    wx.request({
+        url: api.CommentPost,
+        method: 'POST',
+        data: {
+            content: that.data.comment, // Content of the comment
+            type:0,
+            valueId: that.data.info.noteId,   // ID of the post being commented on
+            parentId:""
+        },
+        header: {
+            'content-type': 'application/json', // Assuming JSON data
+            'X-Sidetravel-Token': wx.getStorageSync('token')
+        },
+        success: (res) => {
+            if (res.data.errno === 0) {
+                wx.showToast({
+                    title: '评论成功',
+                    icon: 'success'
+                });
+                // Optionally clear the comment input field
+                that.setData({
+                    comment: ''
+                });
+                // 刷新页面
+                that.onLoad()
+                // that.fectchComment(that.data.info.noteId)
+                // Refresh comments or handle as needed
+            } else {
+                wx.showToast({
+                    title: '评论失败，请稍后重试',
+                    icon: 'none'
+                });
+            }
+        },
+        fail: () => {
+            wx.showToast({
+                title: '网络错误',
+                icon: 'none'
+            });
+        }
+    });
+  },
+    bindKeyInput: function (e) {
+    this.setData({
+      comment: e.detail.value
+    })
+  },
+
   },
 })

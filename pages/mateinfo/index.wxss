@@ -1,4 +1,5 @@
 /* pages/mateinfo/index.wxss */
+
 .area{
   display: flex;
   flex-direction: column;
@@ -16,12 +17,10 @@
 }
 .avatar{
   margin:0rpx 20rpx;
-  border: saddlebrown 1px solid;
 }
 .uinfo{
   display: flex;
   flex-direction: column;
-  border: saddlebrown 1px solid;
 }  
 
 .r1 {
@@ -39,28 +38,14 @@
   height: 30rpx;
 }
 
-
-.row .info{
-  flex: 1;
+.menu{
   display: flex;
-  flex-direction: row;
-  padding:10rpx 0rpx;
-  margin-left: 20rpx;
-  border-bottom:1px solid #CCCCCC;
+  flex-direction: row-reverse;
 }
-.info .title{
-  color:grey;
-  margin-right: 20rpx;
+.menu van-icon{
+  margin-left: 25rpx;
+  margin-right: 25rpx;
 }
-.des{
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-box-orient:vertical;
-  white-space: nowrap;
-}
-
 
 
 

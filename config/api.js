@@ -2,7 +2,7 @@
 // 本机开发时使用
 var WxApiRoot = 'http://localhost:8082/wx/';
 // 局域网测试使用
-// var WxApiRoot = 'http://192.168.1.3:8080/wx/';
+// var WxApiRoot = 'http://192.168.43.114:8082/wx/';
 // 云平台部署时使用
 // var WxApiRoot = 'http://122.51.199.160:8080/wx/';
 // 云平台上线时使用
@@ -13,7 +13,9 @@ module.exports = {
   
   NoteHotList: WxApiRoot + 'notes/hotlist',// 首页热门动态
   StorageUpload: WxApiRoot + 'storage/upload', //图片上传
-  NotePost: WxApiRoot + 'note/post', //发表评论
+  NotePost: WxApiRoot + 'notes/post', //发表动态
+  CommentPost: WxApiRoot + 'comment/post', //发表评论
+  CommentList: WxApiRoot + 'comment/list', //评论列表
   //////////////////////////////////////////////////
 
   IndexUrl: WxApiRoot + 'home/index', //首页数据接口

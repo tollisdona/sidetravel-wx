@@ -9,13 +9,13 @@
   <view class="row">
   <image src="/images/calendar.svg" />
   <view class="info">
-   <text class="title">目的地:</text> 
+   <text class="title">目的地:</text>   
    <text class="value">{{item.to}}</text>  </view>
   </view>
   <view class="row">
   <image src="/images/calendar.svg" />
   <view class="info des">
-   <text class="value des">{{item.description}}</text>   </view>
+   <text class="value des van-ellipsis">{{item.description}}</text>   </view>
   </view>
 
   <!-- 用户信息 -->

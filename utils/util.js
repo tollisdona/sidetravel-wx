@@ -18,21 +18,21 @@ function formatNumber(n) {
 }
 
 /**
- * 封封微信的的request
+ * 封装微信的的request
  */
-function request(url, data = {}, method = "POST") {
+function request(url, data = {}, method = "POST",header="") {
   return new Promise(function(resolve, reject) {
     wx.request({
       url: url,
       data: data,
       method: method,
-      header: {
+      header: header === "" ? {
         'Content-Type': 'application/x-www-form-urlencoded',
         'X-Sidetravel-Token': wx.getStorageSync('token')
-      },
+      }:header,
       success: function(res) {
         if (res.statusCode == 200) {
-          console.log("请求 成功");
+          console.log("");
           wx.navigateTo({
             url: '/pages/square/square',
           })
@@ -46,7 +46,7 @@ function request(url, data = {}, method = "POST") {
             }
             // 切换到登录页面
             wx.navigateTo({
-              url: '/pages/auth/login/login'
+              url: '/pages/userinfo/index/index/index'
             });
           } else {
             resolve(res.data);

@@ -1,83 +1,96 @@
 // pages/moment-edit/index.js
 import util from '../../utils/util'
 import api from '../../config/api'
+var app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    fileList:[
-      {
-        isPic:'false',
-        url:'https://media.w3.org/2010/05/sintel/trailer.mp4'
-      }, {
-        url:'/images/r.png'
-      },{
-        url:'/images/r.png'
-      },{
-        url:'/images/r.png'
-      }
-    ],
-    address:''
+    fileList:[],
+    position:{},
+    content:"",
+    tag:"",
+    isClicked:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
-  },
-// 选择图片并上传
-  afterReads() {
-    console.log("choosemedia")
-  wx.chooseMedia({
-    count: 9 - this.data.fileList.length, // 最多可选择的图片数量
-    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-    success: (res) => {
-      // 逐个上传选择的图片
-    console.log("res:",res)
-      res.tempFiles.forEach(filePath => {
-        this.uploadMedia(filePath);
-      });
-    },
-  });
   },
 
-// 上传图片
-  afterRead(res) {
-  console.log("uploadmedia")
-  console.log("file:",res)
-  const files = res.detail.file
-  files.forEach(file => {
-    console.log("grdg,",file)
-    this.uploadFile(file);
-  });
+// 读取图片
+async afterRead(File) {
+  console.log("AFTERREAD")
+  console.log("file:",File.detail.file)
+  const fileLimit = 5 * 1024 * 1024
+  let tempFiles = File.detail.file
+  for(let i=0; i< tempFiles.length; i++){
+    let filePath = tempFiles[i].url
+    // let suffixType = filePath.substring(filePath.lastIndexOf(".")+1)
+    if(tempFiles[i].size > fileLimit){
+      filePath =await this.compressFile(filePath,tempFiles[i].type)
+      tempFiles[i].url= filePath
+    }
+  }
+  this.setData({fileList:this.data.fileList.concat(tempFiles)})
+  console.log("afterread的filelist",this.data.fileList)
   },
-  uploadFile(file){
-    wx.uploadFile({
-      url: api.StorageUpload,// 上传接口地址
-      filePath: file.url,
-      name: 'file', // 文件对应的key？
-      success: (res) => {
-        // 上传成功后处理服务器返回的数据
-        console.log("访问服务器上传res:",res)
-        const data = JSON.parse(res.data);
-        const fileList = this.data.fileList.concat(data.url); // 假设服务器返回的数据中有一个url字段表示图片地址
-        this.setData({ fileList });
-      },
-      fail: (err) => {
-        // 上传失败处理
-        console.log("e:",err)
-        wx.showToast({
-          title: '上传失败',
-          icon: 'none'
-        });
+  compressFile(src,type){
+    return new Promise((resolve) =>{
+      let quality = 80
+      if(type === "image"){
+        wx.compressImage({
+                src:src,
+                quality:quality,
+                success:function(res){
+                  resolve(res.tempFilePath)
+                },
+                fail: function(err){
+                  resolve(src)
+                }
+              })
+      }else if (type === "video"){
+        wx.compressVideo({
+          quality: "medium",
+          src:src,
+          success: function(res){
+            resolve(res.tempFilePath)
+            console.log(res,"yasuochenggong")
+          },
+          fail:function(err){
+            resolve(src)
+          }
+        })
       }
+    })
+  },
+  uploadFile(i,file){
+    return new Promise((resolve, reject) => {
+      wx.uploadFile({ 
+        url: api.StorageUpload,
+        filePath: file.url,
+        name: 'file',
+        success: (res) => {
+          const data = JSON.parse(res.data);
+          // 打印数据
+          console.log("上传返回数据:",data)
+          if (data.errno === 0) {
+            // 替换临时链接
+            this.setData({
+              [`fileList[${i}].url`]: data.data.url
+            });
+            resolve(data.data.url);  // Resolve with the URL
+          } else {
+            reject(new Error('Upload failed with errno ' + data.errno));
+          }
+        },
+        fail: (err) => {
+          reject(err);
+        }
+      });
     });
-  this.setData({
-    fileList:this.data.fileList.concat(file)
-  })
   },
 
   delete(event) {
@@ -87,6 +100,9 @@ Page({
       fileList:this.data.fileList
     })
    },
+  onTapLabel(){
+
+  },
   onTapPosition(){
     var that = this;
     wx.chooseLocation({
@@ -99,7 +115,12 @@ Page({
         const longitude = res.longitude; // 经度
         // 可以根据需要将位置信息保存到 data 中或者进行其他操作
         that.setData({
-          address:name
+          position:{
+            name:name,
+            address:address,
+            latitude:latitude,
+            longitude:longitude
+          }
         })
        },
         fail: function (err) {
@@ -108,9 +129,60 @@ Page({
         }
       });
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+
+  onTapPost(){
+    if(!this.data.content && this.data.fileList.length === 0){
+      util.showErrorToast("发表内容为空！")
+      return false
+    }
+    this.setData({isClicked:true})
+    wx.showLoading({
+      title: '上传中',
+    })
+    const uploadPromises = this.data.fileList.map((file, index) => this.uploadFile(index, file));
+    let that = this
+    Promise.all(uploadPromises).then(urlList => {
+      // All files have been uploaded successfully
+      console.log("地理位置",that.data.position)
+      util.request(api.NotePost, {
+        content: that.data.content,
+        media: urlList,  // Use the new URLs from the uploadFile resolution
+        tag: that.data.tag,
+        position: JSON.stringify(that.data.position)
+      }, "POST", {
+        'Content-Type': 'application/json',
+        'X-Sidetravel-Token': wx.getStorageSync('token')
+      }).then(res => {
+        wx.hideLoading();
+        if (res.errno === 0) {
+          wx.showToast({title: '发布成功'})
+          wx.switchTab({url: '/pages/square/square'})
+        } else {
+          wx.showToast({
+            title: '发布失败',
+            icon: 'none'
+          });
+          this.setData({ isClicked: false });
+        }
+      }).catch(error => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '网络错误',
+          icon: 'none'
+        });
+        console.log("Post error:", error);
+        this.setData({ isClicked: false });
+      });
+    }).catch(error => {
+      wx.hideLoading();
+      wx.showToast({
+        title: '上传失败',
+        icon: 'none'
+      });
+      console.log("Upload error:", error);
+      this.setData({ isClicked: false });
+    });
+  },
   onReady() {
 
   },
@@ -119,7 +191,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    if(!app.globalData.hasLogin){
+      wx.navigateTo({
+        url: '/pages/userinfo/index/index',
+      });
+      return;
+    }
   },
 
   /**

@@ -18,8 +18,20 @@
   <van-cell-group class="body">
     <van-cell icon="/images/calendar.svg" title="往返时间" value="{{item.date}}"> </van-cell>
     <van-cell icon="guide-o" title="目的地" value="{{item.to}}"> </van-cell>
-    <van-cell icon="wap-home-0" title="出发地" value="{{item.from}}"> </van-cell>
-    <van-cell icon="records-o" title="描述" value="{{item.des}}"> </van-cell>
+    <van-cell icon="wap-home-o" title="出发地" value="{{item.from}}"> </van-cell>
+    <van-field 
+      value="{{item.description}}"
+      label="描述"
+      type="textarea"
+      input-align="right"
+      left-icon="records-o"
+      disabled
+      autosize="{maxHeight: 100, minHeight: 50}"
+      />
+    <view class="menu"> 
+      <van-icon name="ellipsis" size="40rpx" /> 
+      <van-icon name="star-o" size="40rpx" /> 
+    </view>
   </van-cell-group>
 
   <!-- <view class="row">
