@@ -14,6 +14,7 @@ bindtap="navigateTo">
 						<image class="card_avatar" src="{{item.info.userVo.avatar}}" />
 						<text class="card_nickname">{{item.info.userVo.nickname}}</text>
 						<text class="card_like">{{item.info.likesCount}}</text>
+            <image class="card_li" src="/images/like.svg" bind:tap="clicklike"></image>
 					</view>
           <view class="card_time" wx:if="{{heightType === 80}}">
           {{item.info.addTime}}

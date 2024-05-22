@@ -12,15 +12,15 @@ Page({
     hasLogin:false,
     userinfo:{},
     funcList:[
-      {name:'/images/favorites-fill.svg',txt:'足迹'},
-      {name:'/images/favorites-fill.svg',txt:'足迹'},
-      {name:'/images/favorites-fill.svg',txt:'足迹'},
-      {name:'/images/favorites-fill.svg',txt:'足迹'}
+      {name:'/images/favorites-fill.svg',txt:'我的动态'},
+      {name:'/images/favorites-fill.svg',txt:'我的游记'},
+      {name:'/images/favorites-fill.svg',txt:'我的收藏'},
+      {name:'/images/favorites-fill.svg',txt:'我的点赞'}
     ],
     optionList:[
       {title:'历史记录'},
       {title:'我的约伴'},
-      {title:'反馈与建议'}
+      {title:'修改个人信息'}
     ]
 
   },
@@ -52,16 +52,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    if(app.globalData.hasLogin){
+    user.checkLogin().then(res=>{
+      app.globalData.hasLogin = true;
       let userInfo = wx.getStorageSync('userInfo');
       this.setData({
         userinfo:userInfo,
         hasLogin:true
       })
       console.log("ddarata info:",this.data.userinfo);
-    }
-    this.setTabbar();
+    }).catch(err =>{
+    })
 
+    this.setTabbar();
   },
 
   /**
@@ -78,12 +80,7 @@ Page({
 
   },
   dologin(){
-    // wx.login({
-    //   success: (res) => {
-    //     console.log(res.code)
-    //   },
-    // })
-    console.log("dianjidenglu");
+    // console.log("dianjidenglu");
     user.loginByWeixin().then(res =>{
       console.log(res);
       app.globalData.hasLogin = true;
@@ -107,15 +104,52 @@ Page({
         if (!res.confirm) {
           return;
         }
-        util.request(api.AuthLogout, {}, 'POST');
-        app.globalData.hasLogin = false;
-        wx.removeStorageSync('token');
-        wx.removeStorageSync('userInfo');
-        wx.reLaunch({
-          url: '/pages/userinfo/index/index'
-        });
+        util.request(api.AuthLogout, {}, 'POST').then(res =>{
+          console.log("退出登录",res);
+          wx.showToast({
+            icon: 'success',
+            duration: 2000
+          });
+          app.globalData.hasLogin = false;
+          wx.removeStorageSync('token');
+          wx.removeStorageSync('userInfo');
+          wx.reLaunch({
+             url: '/pages/userinfo/index/index'
+          });
+        }).catch(err =>{
+          util.showErrorToast(err.errMsg)
+        })
       }
     })
 
+  },
+  clickFunction:function(e){
+    const id = e.currentTarget.dataset.id;
+    if(id == 0){
+      console.log(id)
+    }else if(id == 1){
+
+    }else if(id == 2){
+
+    }else if(id == 3){
+
+    }
+  },
+  clickOption:function(e){
+    const id = e.currentTarget.dataset.id;
+    if(id == 0){
+      console.log(id)
+    }else if(id == 1){
+
+    }else if(id == 2){
+      wx.navigateTo({
+        url: '/pages/userinfo/changeInfo/index',
+      })
+    }
+  },
+  goMeFollow(){
+    wx.navigateTo({
+      url: '/pages/userinfo/myfollow/index',
+    })
   }
 })

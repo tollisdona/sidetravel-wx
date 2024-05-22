@@ -1,21 +1,35 @@
 // 以下是业务服务器API地址
 // 本机开发时使用
-var WxApiRoot = 'http://localhost:8082/wx/';
+// var WxApiRoot = 'http://localhost:8082/wx/';
 // 局域网测试使用
-// var WxApiRoot = 'http://192.168.43.114:8082/wx/';
+// var WxApiRoot = 'http://192.168.164.114:8082/wx/';
+// 内网穿透测试 
+var WxApiRoot = 'https://3ackenqpjiej-5964.beijing-02.dayunet.com:443/wx/';
 // 云平台部署时使用
 // var WxApiRoot = 'http://122.51.199.160:8080/wx/';
 // 云平台上线时使用
-// var WxApiRoot = 'https://www.oocquin.online/wx/';
+// var WxApiRoot = 'https://www.oocquin.online/wx/'; 
 
 module.exports = {
   AuthLogout: WxApiRoot + 'auth/logout', //账号登出
-  
   NoteHotList: WxApiRoot + 'notes/hotlist',// 首页热门动态
+  NoteNearList: WxApiRoot + 'notes/nearlist',// 首页附近动态
   StorageUpload: WxApiRoot + 'storage/upload', //图片上传
   NotePost: WxApiRoot + 'notes/post', //发表动态
   CommentPost: WxApiRoot + 'comment/post', //发表评论
   CommentList: WxApiRoot + 'comment/list', //评论列表
+  PartnerList: WxApiRoot + 'partner/list', //寻伴信息
+  PartnermyList: WxApiRoot + 'partner/mylist',//我的寻伴信息
+  PartnerPost: WxApiRoot + 'partner/add', //发布寻伴信息
+  PartnerSelect: WxApiRoot + 'partner/select', //筛选寻伴信息
+  UserFollow: WxApiRoot + '/interact/followList', // 获取关注列表
+  UserFollower: WxApiRoot + '/interact/fansList', // 获取粉丝列表
+  UserCommon: WxApiRoot + '/interact/commonList', // 获取互相关注列表
+  UserUpdate: WxApiRoot + '/user/update',//更新用户信息
+  InteractLike: WxApiRoot + '/interact/like', //点赞
+  InteractFollow: WxApiRoot + '/interact/follow', //关注
+  InteractUnFollow: WxApiRoot + '/interact/unfollow', //取消关注
+  
   //////////////////////////////////////////////////
 
   IndexUrl: WxApiRoot + 'home/index', //首页数据接口

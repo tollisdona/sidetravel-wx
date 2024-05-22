@@ -1,13 +1,13 @@
 {
-  "pages": [
+  "pages": [    
     "pages/userinfo/index/index",
-    "pages/start/start",
+"pages/start/start",
+    "pages/location/index",
     "pages/square/square",
     "pages/playmate/index",
     "pages/moment/index",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/location/index",
     "pages/search/index",
     "pages/message/index",
     "pages/detail/detail",
@@ -15,7 +15,16 @@
     "pages/playselect/index",
     "pages/moment-edit/index",
     "pages/mateinfo/index",
-    "pages/searchResults/index"
+    "pages/searchResults/index",
+    "pages/userinfo/mymoment/index",
+    "pages/userinfo/myfavorite/index",
+    "pages/userinfo/mylike/index",
+    "pages/userinfo/otheruser/index",
+    "pages/userinfo/changeInfo/index",
+    "pages/userinfo/mypartner/index",
+    "pages/enterLive/index",
+    "pages/chatRoom/chatRoom",
+    "pages/userinfo/myfollow/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -1,0 +1,17 @@
+<!--pages/userinfo/myfollow/index.wxml-->
+<wxs src="../../../utils/myutil.wxs" module="tool"></wxs>
+<navigation-bar back="{{true}}" title="我的关注"></navigation-bar>
+
+<view class="area">
+<view class="user" wx:for="{{follows}}" wx:key="index">
+  <view class="avatar">
+  <image src="{{item.avatar}}"></image>
+  </view>
+  <view class="name"></view>
+  <view class="gender">
+    <image src="/images/male1.svg" class="gender male" wx:if="{{item.gender === 0}}" />
+    <image src="/images/female1.svg" class="gender female" wx:if="{{item.gender === 1}}" />
+  </view>
+  <view class="addTime">{{tool.tool.formatTime()}}</view>
+</view>
+</view>

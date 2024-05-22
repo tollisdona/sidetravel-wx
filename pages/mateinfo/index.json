@@ -4,6 +4,7 @@
     "van-field":"/miniprogram_npm/@vant/weapp/field/index",
     "van-image":"/miniprogram_npm/@vant/weapp/image",
     "van-cell-group":"/miniprogram_npm/@vant/weapp/cell-group",
-    "van-cell":"/miniprogram_npm/@vant/weapp/cell"
+    "van-cell":"/miniprogram_npm/@vant/weapp/cell",
+    "comment":"/components/comment/index"
   }
 }

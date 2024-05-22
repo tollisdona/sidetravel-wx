@@ -49,8 +49,11 @@
   height: 20px;
   border-radius: 50%;
 }
-
+.card_li {
+  width: 20px;
+  height: 20px;
+}
 .card_nickname {
   flex: 1;
-  padding-left: 4px;
+  padding-left: 2px;
 }

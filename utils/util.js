@@ -7,8 +7,6 @@ function formatTime(date) {
   var hour = date.getHours()
   var minute = date.getMinutes()
   var second = date.getSeconds()
-
-
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
@@ -27,17 +25,14 @@ function request(url, data = {}, method = "POST",header="") {
       data: data,
       method: method,
       header: header === "" ? {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/x-www-form-urlencoded',
         'X-Sidetravel-Token': wx.getStorageSync('token')
       }:header,
       success: function(res) {
         if (res.statusCode == 200) {
-          console.log("");
-          wx.navigateTo({
-            url: '/pages/square/square',
-          })
+
           if (res.data.errno == 501) {
-            // 清除登录相关内容
+            // 表示未登录
             try {
               wx.removeStorageSync('userInfo');
               wx.removeStorageSync('token');
@@ -45,8 +40,8 @@ function request(url, data = {}, method = "POST",header="") {
               // Do something when catch error
             }
             // 切换到登录页面
-            wx.navigateTo({
-              url: '/pages/userinfo/index/index/index'
+            wx.switchTab({
+              url: '/pages/userinfo/index/index'
             });
           } else {
             resolve(res.data);
@@ -66,8 +61,8 @@ function request(url, data = {}, method = "POST",header="") {
 function redirect(url) {
   //判断页面是否需要登录
   if (false) {
-    wx.redirectTo({
-      url: '/pages/auth/login/login'
+    wx.switchTab({
+      url: '/pages/userinfo/index/index'
     });
     return false;
   } else {
@@ -80,7 +75,7 @@ function redirect(url) {
 function showErrorToast(msg) {
   wx.showToast({
     title: msg,
-    image: '/static/images/icon_error.png'
+    icon:"error"
   })
 }
 

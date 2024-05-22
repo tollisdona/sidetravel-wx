@@ -21,7 +21,9 @@ Component({
     userLocal: wx.getStorageSync("userInfo"),
     hasLogin:false,
     showInput:false,
-    reply:''
+    reply:'',
+    clickLike:true,
+    clickLike2:true
   },
 
   /**
@@ -47,6 +49,18 @@ Component({
     }
   },
   methods: {
+    clicklike(){
+      console.log("clikced");
+      this.setData({
+        clickLike:! this.data.clickLike
+      })
+    },
+    clicklike2(){
+      console.log("clikced");
+      this.setData({
+        clickLike2:! this.data.clickLike2
+      })
+    },
   fetchComments: function(postId) {
       const that = this;
       wx.request({
@@ -76,7 +90,9 @@ Component({
           }
       });
   },
-  replyComment:function(){
+  replyComment:function(e){
+    console.log('pinglun信息',e);
+    this.triggerEvent('pullUpInput',{message: e.detail})
     this.setData({showInput:true})
     console.log("点击恢复")
   },

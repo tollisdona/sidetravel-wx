@@ -25,8 +25,13 @@ Page({
     sliderOffsets:[],
     padding: 4,
     gridList:[],
+    gridList0:[],
+    gridList1:[],
+    gridList2:[],
     cardWidth: (screenWidth - 4 * 2 - 4) / 2, // 减去间距
-    isTriggered:true
+    isTriggered:true,
+    latitude:0,
+    longitude:0
   },
   setTabbar(){
     if (typeof this.getTabBar === 'function' ) {
@@ -53,14 +58,33 @@ Page({
     util.request(api.NoteHotList,{},"POST").then(res =>{
       console.log("得到热门列表,",res)
       this.setData({
+        gridList1: fixGridList(res.data.list),
         gridList: fixGridList(res.data.list)
       })
       console.log("GridlistL",this.data.gridList)
+    }).catch(err =>{
+      wx.showToast({
+        title: err,
+        image:"none"
+      })
     })
+  },
+  loadNearRequest(longitude,latitude){
+    // 请求附近动态
+    const data = `longitude=${encodeURIComponent(longitude)}&latitude=${encodeURIComponent(latitude)}`;
+    util.request(
+      api.NoteNearList,data,"POST").then(res =>{
+      this.setData({
+        gridList2: fixGridList(res.data.list),
+        gridList: fixGridList(res.data.list)
+      })
+      console.log('请求成功，服务器返回数据:',res);
+    }).catch(err =>{
+      console.error('请求失败',err);
+    });
   },
 
   refreshHandler(){
-    
     this.setData({
       isTriggered:false
     })
@@ -86,6 +110,67 @@ Page({
     this.setData({
       currentTab: event.detail.current
     })
+    if(this.data.currentTab === 2){
+      //获取用户位置 并处理 loadnear request请求
+      this.canIhavePosition();
+    }else if(this.data.currentTab === 1){
+      this.setData({gridList:this.data.gridList1})
+    }else if(this.data.currentTab === 0){
+      this.setData({gridList:this.data.gridList0})
+    }
+  },
+  canIhavePosition:function(){
+  wx.getSetting({
+    success: (res) => {
+      // 如果用户已经授权地理位置权限
+      if (res.authSetting['scope.userLocation'] === true) {
+        // 直接获取用户位置信息
+        this.getLocation();
+      } else if (res.authSetting['scope.userLocation'] === false) {
+        // 如果用户已拒绝授权地理位置权限，则显示提示信息，引导用户打开设置页面手动授权
+        wx.showModal({
+          title: '提示',
+          content: '请允许使用地理位置信息',
+          confirmText: '去设置',
+          success: (res) => {
+            if (res.confirm) {
+              wx.openSetting({
+                success: (res) => {
+                  // 用户在设置页面完成授权操作后，再次获取用户位置信息
+                  if (res.authSetting['scope.userLocation'] === true) {
+                    this.getLocation();
+                  }
+                }
+              });
+            }
+          }
+        });
+      } else {
+        // 如果用户尚未授权地理位置权限，则直接请求地理位置权限
+        this.getLocation();
+      }
+    }
+  });
+  },
+  getLocation: function () {
+    let that = this;
+    wx.getLocation({
+      type: 'gcj02',
+      success: (res) => {
+      console.log('SQUARE NEAR获取用户位置信息成功', res);
+      const latitude = res.latitude;
+      const longitude = res.longitude;
+      that.setData({
+        latitude:latitude,
+        longitude:longitude
+      })
+      // 在这里可以根据获取到的用户位置信息进行后续操作
+      that.loadNearRequest(longitude,latitude)
+    },
+    fail: (res) => {
+      console.log('获取用户位置信息失败', res);
+    }
+  });
   },
   /**
    * 生命周期函数--监听页面加载

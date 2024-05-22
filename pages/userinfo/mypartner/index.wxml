@@ -1,0 +1,25 @@
+<!--pages/userinfo/mypartner/index.wxml-->
+<text>pages/userinfo/mypartner/index.wxml</text><!-- pages/playmate/index.wxml -->
+<navigation-bar title="约伴" homeButton="{{true}}"></navigation-bar>
+<view class="area">
+  <view class="content">
+  <view class="post item">
+    <view class="empty" wx:if="{{postList}}">
+        <view>还没有人发布过约伴信息，快去发布吧!</view>
+        <view><button type="primary" style="width: 100rpx; height: 50rpx;margin-top: 50rpx; border-radius:50rpx; background-color: #9AD0C2;" bind:tap="onClickPost">
+        发布</button>
+        </view>
+    </view>
+    <scroll-view
+      scroll-y
+      style="flex:1;width:100%;overflow: hidden;"
+      type="custom"
+      show-scrollbar="{{false}}"
+      refresher-enabled="{{true}}"
+      refresher-default-style="white"
+    >
+    <mate-list  wx:if="{{status === 'post'}}"  wx:for="{{postList}}"wx:key="index" item="{{item}}"></mate-list>
+    </scroll-view>
+  </view>
+  </view>
+</view>

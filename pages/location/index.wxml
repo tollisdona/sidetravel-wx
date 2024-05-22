@@ -1,2 +1,33 @@
 <!--pages/location/index.wxml-->
-  <map id="myMap" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}" markers="{{markers}}" bindmarkertap="gotoScenicSpot" include-points="{{includePoints}}"></map>
+<map class='map' id='myMap' longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" 
+show-location="true" markers="{{markers}}" bindmarkertap="bindMakertap" bind:controltap="controlTap" 
+bindregionchange="regionChange" controls="{{controls}}" bindtap="onMapTap" bindcallouttap="onClickUser">
+
+<cover-view slot="callout">
+  <cover-view wx:for="{{markers}}" wx:key="index">
+    <cover-view class="panel" marker-id="{{index}}">
+    	<cover-image class="avatar" src="{{item.avatar}}" />
+		  <cover-view class="username">{{item.username}}</cover-view>
+    </cover-view>
+  </cover-view>
+</cover-view>
+</map>
+  
+<view class="currentPoint" style="font-size: large; font-style: italic;">  您的位置是L:{{latitude}},{{longitude}} 
+    <!-- <van-search shape="round" background="{{rgba(255,0,0,0)}}" value="{{ value }}" placeholder="请输入搜索关键词" /> -->
+</view>
+
+<view wx:for="onlineList" wx:key="index">
+
+</view>
+
+<view class="center-marker">
+  <image src="/images/pin.svg" style="width: 30px; height: 30px;"></image>
+</view>
+<view class="goback">
+  <image src="/images/chatroom.svg"  style="width: 30px;height:30px; margin-top:20px"
+  bind:tap="goChatRoom"></image>
+  <image src="/images/unlock.svg" wx:if="{{openPosition}}" bind:tap="lockPosition" style="width: 30px;height:30px; margin-top:20px"></image>
+  <image src="/images/nearby.svg" style="width: 30px;height:30px; margin-top:20px" bind:tap="checkOnline"></image>
+  <image src="/images/dingwei.svg" style="width: 30px;height:30px;margin-top:20px" bind:tap="goBackPosition"></image>
+</view>

@@ -12,9 +12,11 @@ function checkSession() {
   return new Promise(function(resolve, reject) {
     wx.checkSession({
       success: function() {
+        console.log("session 未过期")
         resolve(true);
       },
       fail: function() {
+        console.log("session 过期")
         reject(false);
       }
     })
@@ -29,7 +31,6 @@ function login() {
     wx.login({
       success: function(res) {
         if (res.code) {
-          console.log("1")
           resolve(res);
         } else {
           reject(res);
@@ -47,9 +48,9 @@ function login() {
  */
 function loginByWeixin(userInfo) {
   return new Promise(function(resolve, reject) {
-    console.log("re t new promise,next re login")
     return login().then((res) => {
-      // console.log(res);
+      console.log("re t new promise,next re login")
+      console.log(res);
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, {
         code: res.code
@@ -83,7 +84,7 @@ function checkLogin() {
       checkSession().then(() => {
         resolve(true);
       }).catch(() => {
-        console.log("s失败")
+        console.log("失败")
         reject(false);
       });
     } else {

@@ -1,11 +1,15 @@
 import { Curves, CurveAnimation, lerp } from '../list/route'
 import { clamp } from '../list/utils'
 import api from '../../config/api.js'
+import util from '../../utils/util'
 
 const { screenWidth } = wx.getSystemInfoSync()
 const { shared, timing, Easing } = wx.worklet
 var app = getApp()
-
+const header ={
+  "Content-Type":"application/json",
+  'X-Sidetravel-Token': wx.getStorageSync('token')
+}
 const GestureState = {
   POSSIBLE: 0, // 0 此时手势未识别，如 panDown等
   BEGIN: 1, // 1 手势已识别
@@ -39,7 +43,12 @@ Component({
     safeBottom:0,
     system:'',
     hasLogin:false,
-    comment:''
+    comment:'',
+    clickLike:true,
+    clickStar:true,
+    localname:'',
+    checkFollow:false,
+    fans:{},
   },
   lifetimes: {
     created() {
@@ -53,14 +62,23 @@ Component({
       console.log("system:",res)
       if(app.globalData.hasLogin){
         this.setData({hasLogin:true})
-      }
-    },
+        this.setData({
+          localname:wx.getStorageSync('userInfo').username
+      })
+  }
+ },
     ready(){
       var page = getCurrentPages()[getCurrentPages().length-1]
       console.log("page:",page.options)
       this.setData({
-        info:JSON.parse(decodeURIComponent(page.options.info))
+        info:JSON.parse(decodeURIComponent(page.options.info)),
+        fans:{
+            "uid":wx.getStorageSync('userInfo').id,
+            "followId":page.options.info.uid
+        }
       })
+      console.log("hhhhhhhhhhhhhhhh")
+      this.checkFollow()
     },
     attached() {
       this.setData({
@@ -128,6 +146,33 @@ Component({
     },
   },
   methods: {
+    clicklike(){
+      console.log("clikced");
+      this.setData({
+        clickLike:! this.data.clickLike
+      })
+    },
+    clickstar(){
+      console.log("ssssssstt");
+      this.setData({
+        clickStar:! this.data.clickStar
+      })
+    },
+    clickFollow(){
+      // let that = this
+      util.request(api.InteractFollow,this.data.fans,"POST",header).then(res=>{
+        console.log("res",res)
+        this.setData()
+      }).catch(err=>{
+      })
+    },
+    checkFollow(){
+      util.request(api.InteractCheckRelation,this.data.fans,"POST",header).then(res =>{
+        console.log("checkfollow",res);
+      }).catch(err=>{
+
+      })
+    },
     handlePanGesture(e) {
       'worklet'
       const {
@@ -210,7 +255,7 @@ Component({
             parentId:""
         },
         header: {
-            'content-type': 'application/json', // Assuming JSON data
+            'Content-Type': 'application/json', // Assuming JSON data
             'X-Sidetravel-Token': wx.getStorageSync('token')
         },
         success: (res) => {
@@ -246,6 +291,10 @@ Component({
     this.setData({
       comment: e.detail.value
     })
+  },
+  handleCommentReply:function(){
+    
+
   },
 
   },

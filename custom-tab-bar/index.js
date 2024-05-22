@@ -60,6 +60,9 @@ Component({
       const data = e.currentTarget.dataset;
       console.log(data);
       if(data.index === 2){
+        // wx.switchTab({
+        //    url:'/pages/moment-edit/index' 
+        // })
         wx.navigateTo({
           url: '/pages/moment-edit/index',
         })

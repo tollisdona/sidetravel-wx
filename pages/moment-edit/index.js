@@ -1,6 +1,8 @@
 // pages/moment-edit/index.js
 import util from '../../utils/util'
 import api from '../../config/api'
+import user from '../../utils/user'
+
 var app = getApp()
 Page({
   /**
@@ -14,11 +16,7 @@ Page({
     isClicked:false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-  },
+
 
 // 读取图片
 async afterRead(File) {
@@ -186,19 +184,6 @@ async afterRead(File) {
   onReady() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    if(!app.globalData.hasLogin){
-      wx.navigateTo({
-        url: '/pages/userinfo/index/index',
-      });
-      return;
-    }
-  },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

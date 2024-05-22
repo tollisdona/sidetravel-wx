@@ -6,6 +6,7 @@ Page({
 
   onLoad(options) {
     const item = JSON.parse(decodeURIComponent(options.item))
+    
     this.setData({
       item:item
     })

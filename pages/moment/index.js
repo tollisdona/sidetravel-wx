@@ -1,4 +1,5 @@
 // pages/moment/index.js
+import user from '../../utils/user'
 Page({
 
   /**
@@ -7,12 +8,27 @@ Page({
   data: {
   },
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面显示
    */
-  onLoad(options) {
-    wx.navigateTo({
-      url: '/pages/moment-edit/index',
+  onShow() {
+    console.log("ggggggggggggggg")
+    user.checkLogin().then(res =>{
+      console.log("checklogin:",res);
+      wx.navigateTo({
+        url: '/pages/moment-edit/index',
+      })
+    }).catch(err =>{
+      wx.showToast({
+        title: '请先登录！',
+        icon:'error'
+      })
+      setTimeout(() => {
+        wx.switchTab({
+          url: '/pages/userinfo/index/index',
+        })
+      }, 500); 
     })
+
   //   //设置topbar在胶囊按钮下方
   // const buttonInfo = wx.getMenuButtonBoundingClientRect();
   // this.setData({
@@ -25,14 +41,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    // this.setTabbar();
 
   },
 

@@ -15,6 +15,8 @@
                 <text class="comment-text">{{item.content}}</text>
                 <text class="comment-time">{{item.addTime}}</text>
             </view>
+            <image class="like" wx:if="{{clickLike}}"style="width: 20px;height: 20px;"bind:tap="clicklike" src="/images/like.svg" />
+            <image class="like" wx:if="{{!clickLike}}" style="width: 20px;height: 20px;"bind:tap="clicklike" src="/images/like-full.svg" />
             </view>
             <!-- 子评论 -->
             <view class="child-comments">
@@ -27,6 +29,12 @@
                             <text class="comment-text">{{child.child.content}}</text>
                             <text class="comment-time">{{child.child.addTime}}</text>
                         </view>
+                        <image class="like" style="width: 20px;height: 20px;"
+                        wx:if="{{clickLike2}}"
+                        bind:tap="clicklike2" src="/images/like.svg" />
+                        <image class="like" style="width: 20px;height: 20px;"
+                        wx:if="{{!clickLike2}}"
+                        bind:tap="clicklike2" src="/images/like-full.svg" />
                         </view>
                     </view>
                 </block>
@@ -35,7 +43,7 @@
     </block>
     <!-- 回复按钮 -->
     <view class="overlay" bind:tap="hideview" wx:if="{{showInput}}"></view>
-      <view wx:if="{{showInput}}" class="input-area" style="display: flex;">
+      <view wx:if="{{showInput}}" class="input-area" style="display: flex; z-index: 0;">
        <input focus="{{true}}"	adjust-position="{{true}}" type="text" confirm-type="send" class="reply-input" placeholder="写回复..." bindinput="replyInput" model:value="{{reply}}" />
        <button size="mini" type="primary" bindtap="sendReply" data-id="{{item.id}}">发送</button>
     </view>

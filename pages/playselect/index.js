@@ -1,4 +1,7 @@
 // pages/playselect/index.js
+import util from '../../utils/util'
+import api from '../../config/api'
+
 Page({
 
   /**
@@ -8,7 +11,9 @@ Page({
     date:null,
     showDate:false,
     to:'',
-    from:''
+    from:'',
+    start:null,
+    end:null
   },
   onDisplay() {
     this.setData({ showDate: true });
@@ -25,34 +30,36 @@ Page({
     this.setData({
       showDate: false,
       date: `${this.formatDate(start)} - ${this.formatDate(end)}`,
+      start: new Date(start),
+      end: end
     });
   },
-  clickFrom(){
-
+  handleFrom(e){
+    var from = e.detail.message
+    this.setData({ from:from})
 
   },
-  clickTo(){
-
+  handleTo(e){
+    var to = e.detail.message
+    this.setData({ to:to})
   },
   onFinish(){
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];   //当前页面
-    var prevPage = pages[pages.length - 2];  
-    prevPage.setData({
-      selectList:[
-      {"date": "05月01日-05月03日",
-        "to": "北京",
-        "description": "寻找旅游伴侣",
-        "user": {
-         "name": "小明",
-         "avatar": "/images/user-fill.svg",
-         "medal":[],
-         "gender":"0"
-         },
-         "posttime": "2024-04-15 14:30"
-      }],
-      status:'select'
+    var prevPage = pages[pages.length - 2]; 
+    console.log("dayin:",this.data.start)
+    // start=${encodeURIComponent(new Date(this.data.start))}&
+    const data = `from=${encodeURIComponent(this.data.from)}&to=${encodeURIComponent(this.data.to)}`
+      util.request(api.PartnerSelect,data,"POST").then(res =>{
+        console.log("筛选：",res);
+      prevPage.setData({
+        selectList:res.data.list,
+        status:"select"
     })
+    }).catch(err =>{
+      util.showErrorToast(err);
+    })
+
     wx.navigateBack({
       delta: 1,
     })

@@ -1,5 +1,5 @@
 <!--pages/moment-edit/index.wxml-->
-<navigation-bar title="编辑动态"></navigation-bar>
+<navigation-bar back title="编辑动态"></navigation-bar>
 <view class="content">
   <textarea placeholder="分享你的旅游动态..." maxlength="1000" focus="{{focus}}" model:value="{{content}}">
   </textarea>

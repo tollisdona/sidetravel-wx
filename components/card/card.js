@@ -27,6 +27,7 @@ Component({
       value:0
     }
   },
+
   lifetimes: {
     created() {
       this.scale = shared(1)
@@ -94,6 +95,7 @@ Component({
   },
 
   methods: {
+
     navigateTo(e) {
       const { index, url, ratio, info} = e.currentTarget.dataset
       console.log("detaiL",e.currentTarget.dataset)
