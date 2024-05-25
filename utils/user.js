@@ -49,15 +49,15 @@ function login() {
 function loginByWeixin(userInfo) {
   return new Promise(function(resolve, reject) {
     return login().then((res) => {
-      console.log("re t new promise,next re login")
-      console.log(res);
+      // console.log("re t new promise,next re login")
+      // console.log(res);
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, {
         code: res.code
       }, 'POST').then(res => {
         if (res.errno === 0) {
           //存储用户信息
-          console.log("loginbywx：res存储")
+          // console.log("loginbywx：res存储")
           wx.setStorageSync('userInfo', res.data.userInfo);
           wx.setStorageSync('token', res.data.token);
           resolve(res);

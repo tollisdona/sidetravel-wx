@@ -5,7 +5,6 @@
  bindsearch="handleSearch"
  bindcancel="onCancel"/>
 <view class="history" style="font-weight: 500rpx;">
-  历史搜索记录
 </view>
 </view>
 

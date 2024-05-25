@@ -3,6 +3,10 @@ import user from '../../../utils/user.js'
 import util from '../../../utils/util.js'
 import api from '../../../config/api.js'
 var app = getApp()
+const header = {
+  "Content-Type": "application/json",
+  'X-Sidetravel-Token': wx.getStorageSync('token')
+}
 Page({
 
   /**
@@ -13,16 +17,16 @@ Page({
     userinfo:{},
     funcList:[
       {name:'/images/favorites-fill.svg',txt:'我的动态'},
-      {name:'/images/favorites-fill.svg',txt:'我的游记'},
+      {name:'/images/favorites-fill.svg',txt:'我的点赞'},
       {name:'/images/favorites-fill.svg',txt:'我的收藏'},
-      {name:'/images/favorites-fill.svg',txt:'我的点赞'}
+      {name:'/images/favorites-fill.svg',txt:'我的约伴'}
     ],
     optionList:[
       {title:'历史记录'},
-      {title:'我的约伴'},
       {title:'修改个人信息'}
-    ]
-
+    ],
+    follow:0,
+    follower:0
   },
   setTabbar(){
     if (typeof this.getTabBar === 'function' ) {
@@ -37,15 +41,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
   },
 
   /**
@@ -55,15 +50,21 @@ Page({
     user.checkLogin().then(res=>{
       app.globalData.hasLogin = true;
       let userInfo = wx.getStorageSync('userInfo');
+      this.countFollow(userInfo.id);
       this.setData({
         userinfo:userInfo,
-        hasLogin:true
+        hasLogin:true,
       })
-      console.log("ddarata info:",this.data.userinfo);
     }).catch(err =>{
     })
-
     this.setTabbar();
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
   },
 
   /**
@@ -96,6 +97,7 @@ Page({
     });
   },
   dologout: function() {
+    let that = this;
     wx.showModal({
       title: '',
       confirmColor: '#b4282d',
@@ -103,6 +105,12 @@ Page({
       success: function(res) {
         if (!res.confirm) {
           return;
+        }
+        // 更改用户在线状态
+        if(that.checkOnline() === 1){
+          util.request(api.OnlineOff,{userId:that.data.userinfo.id},"POST",header).then(res=>{
+            console.log("showOff",res)
+          })
         }
         util.request(api.AuthLogout, {}, 'POST').then(res =>{
           console.log("退出登录",res);
@@ -126,24 +134,33 @@ Page({
   clickFunction:function(e){
     const id = e.currentTarget.dataset.id;
     if(id == 0){
-      console.log(id)
+      wx.navigateTo({
+        url: '../mymoment/index',
+      })
     }else if(id == 1){
-
+      wx.navigateTo({
+        url: '../mylike/index',
+      })
     }else if(id == 2){
-
+      wx.navigateTo({
+        url: '../mylike/index',
+      })
     }else if(id == 3){
-
+      wx.navigateTo({
+        url: '../mypartner/index',
+      })
     }
   },
   clickOption:function(e){
     const id = e.currentTarget.dataset.id;
     if(id == 0){
-      console.log(id)
-    }else if(id == 1){
-
-    }else if(id == 2){
       wx.navigateTo({
-        url: '/pages/userinfo/changeInfo/index',
+        url: '/pages/userinfo/footprint/index'
+      })
+    }else if(id == 1){
+      let user = encodeURIComponent(JSON.stringify(this.data.userinfo))
+      wx.navigateTo({
+        url: '/pages/userinfo/changeInfo/index?user=' + user,
       })
     }
   },
@@ -151,5 +168,33 @@ Page({
     wx.navigateTo({
       url: '/pages/userinfo/myfollow/index',
     })
-  }
+  },
+  countFollow: function(uid){
+    const data = `uid=${encodeURIComponent(uid)}`;
+    util.request(api.InteractCount,data,"POST").then(res =>{
+      this.setData({
+        follow:res.data.followCount,
+        follower:res.data.fansCount
+      })
+    }).catch(err =>{
+      wx.showToast({
+        title: err,
+        icon:'error'
+      })
+    })
+  },
+  checkOnline(){
+    let that = this;
+    util.request(api.OnlineCheck,{userId:that.data.userinfo.id},"POST",header).then(res =>{
+      if(res.data === 1){
+        return 1
+      }else{
+        return 0
+      }
+    }).catch(err=>{
+      wx.showToast({
+        title: err,
+      })
+    })
+  },
 })

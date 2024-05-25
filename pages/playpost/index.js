@@ -21,7 +21,6 @@ Page({
   },
   onShow(){
     user.checkLogin().then(res =>{
-      console.log("checklogin:",res);
     }).catch(err =>{
       wx.showToast({
         title: '请先登录！',

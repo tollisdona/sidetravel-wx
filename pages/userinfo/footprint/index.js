@@ -1,9 +1,10 @@
-// pages/searchResults/index.js
-import { installRouteBuilder } from '../list/route'
-import { compareVersion, fixGridList } from '../list/utils'
-import util from '../../utils/util'
-import api from '../../config/api'
+// pages/userinfo/footprint/index.js
+import { installRouteBuilder } from '../../list/route'
+import { compareVersion, fixGridList } from '../../list/utils'
+import util from '../../../utils/util'
+import api from '../../../config/api'
 const { screenWidth } = wx.getSystemInfoSync()
+const data = `userId=${encodeURIComponent(wx.getStorageSync('userInfo').id)}`;
 Page({
 
   /**
@@ -31,20 +32,7 @@ Page({
     }
     installRouteBuilder()
   },
-  onSure(event){
-    const data = `key=${encodeURIComponent(event.detail.keyword)}`;
-    util.request(api.NoteSearch,data,"POST").then(res=>{
-      console.log(res)
-      this.setData({ 
-        gridList: fixGridList(res.data.list)
-      })
-    }).catch(err=>{
-      wx.showToast({
-        title: err,
-        icon:'error'
-      })
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -62,12 +50,32 @@ Page({
         this.setData({
           safeHeight: sh
         })
-
       }
     })
-  },
-  handleSearch(){
 
+  },
+  onShow(){
+    this.loadData();
+  },
+  loadData(){
+    util.request(api.FootprintList,{},"POST").then(res=>{
+      console.log("mympost",res)
+      if(res.errno === 0){
+        this.setData({
+          gridList: fixGridList(res.data.list)
+        })
+      }else{
+        wx.showToast({
+          title: res.errno,
+          icon:'error'
+        })
+      }
+    }).catch(err =>{
+        wx.showToast({
+          title: err,
+          icon:'error'
+        })
+    })
   },
 
 })

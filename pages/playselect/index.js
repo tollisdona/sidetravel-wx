@@ -12,8 +12,8 @@ Page({
     showDate:false,
     to:'',
     from:'',
-    start:null,
-    end:null
+    start:'',
+    end:''
   },
   onDisplay() {
     this.setData({ showDate: true });
@@ -31,7 +31,7 @@ Page({
       showDate: false,
       date: `${this.formatDate(start)} - ${this.formatDate(end)}`,
       start: new Date(start),
-      end: end
+      end: new Date(end)
     });
   },
   handleFrom(e){
@@ -48,8 +48,16 @@ Page({
     var currPage = pages[pages.length - 1];   //当前页面
     var prevPage = pages[pages.length - 2]; 
     console.log("dayin:",this.data.start)
-    // start=${encodeURIComponent(new Date(this.data.start))}&
-    const data = `from=${encodeURIComponent(this.data.from)}&to=${encodeURIComponent(this.data.to)}`
+
+    var Dstart = ''
+    if(this.data.start !=''){
+      Dstart = util.formatTime(this.data.start);
+    }
+    var Dend = ''
+    if(this.data.end !=''){
+      Dend = util.formatTime(this.data.end);
+    }
+    const data = `from=${encodeURIComponent(this.data.from)}&to=${encodeURIComponent(this.data.to)}&start=${encodeURIComponent(Dstart)}&end=${encodeURIComponent(Dend)}`
       util.request(api.PartnerSelect,data,"POST").then(res =>{
         console.log("筛选：",res);
       prevPage.setData({

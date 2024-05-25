@@ -27,7 +27,7 @@ bindregionchange="regionChange" controls="{{controls}}" bindtap="onMapTap" bindc
 <view class="goback">
   <image src="/images/chatroom.svg"  style="width: 30px;height:30px; margin-top:20px"
   bind:tap="goChatRoom"></image>
-  <image src="/images/unlock.svg" wx:if="{{openPosition}}" bind:tap="lockPosition" style="width: 30px;height:30px; margin-top:20px"></image>
-  <image src="/images/nearby.svg" style="width: 30px;height:30px; margin-top:20px" bind:tap="checkOnline"></image>
+  <image src="/images/unlock.svg" wx:if="{{openPosition}}" style="width: 30px;height:30px; margin-top:20px" bind:tap="lockPosition"></image>
+  <image src="/images/nearby.svg" wx:if="{{!openPosition}}" style="width: 30px;height:30px; margin-top:20px" bind:tap="clickOnline"></image>
   <image src="/images/dingwei.svg" style="width: 30px;height:30px;margin-top:20px" bind:tap="goBackPosition"></image>
 </view>

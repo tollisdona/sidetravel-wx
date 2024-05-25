@@ -1,102 +1,53 @@
 // pages/userinfo/mypartner/index.js
-import util from '../../utils/util'
-import api from '../../config/api'
+import util from '../../../utils/util'
+import api from '../../../config/api'
 Page({
   data: {
-    currentTab: 'post', // 默认显示发布内容
-    status:'post',
-    date: '', // 默认日期选择器显示的日期
-    postList:[],
-    selectList:[]
+    postList:[]
   },
-  tabTapP: function () {
-    wx.navigateTo({
-      url: '/pages/playpost/index',
-    })
+    /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    this.loadAllPartner();
   },
-  tabTapS: function(e){
-    const tab = e.currentTarget.dataset.tab; // 获取当前点击的选项
-    this.setData({
-      currentTab: tab // 更新 currentTab 的值为当前点击的选项
-    });
-    wx.navigateTo({
-      url: '/pages/playselect/index',
-    })
-  },
-
-  setTabbar(){
-    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 1
-      })
-    }
-  },
-
   onClickPost(){
     wx.navigateTo({
       url: '/pages/playpost/index',
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    this.loadAllPartner();
-
-  },
-
   loadAllPartner:function(){
-    util.request(api.PartnerList,{},"GET").then(res =>{
-      console.log("返回寻伴数据：",res);
+    util.request(api.PartnermyList,{},"POST").then(res =>{
+      console.log("我的寻伴信息",res);
       this.setData({postList: res.data.list})
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  handleItemLongPress(e){
+    let that = this;
+    const partnerId = e.detail.id
+    const item = e.detail.item
+    wx.showActionSheet({
+      itemList: ['删除'],
+      success: function (res) {
+        if(res.tapIndex === 0){
+          that.delete(partnerId)
+        }
+        // console.log(JSON.stringify(res))
+        // console.log(res.tapIndex) // 用户点击的按钮，从上到下的顺序，从0开始
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    })
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    this.setTabbar();
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  delete(id){
+    let that =this;
+    console.log(id);
+    const data = `id=${encodeURIComponent(id)}`
+    util.request(api.PartnerDelete,data,"POST").then(res =>{
+      console.log("结果",res);
+      that.loadAllPartner()
+    })
   }
 })

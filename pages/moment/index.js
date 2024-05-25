@@ -28,13 +28,6 @@ Page({
         })
       }, 500); 
     })
-
-  //   //设置topbar在胶囊按钮下方
-  // const buttonInfo = wx.getMenuButtonBoundingClientRect();
-  // this.setData({
-  //   safeTop:buttonInfo.bottom
-  // })
-
   },
 
   /**

@@ -3,27 +3,16 @@ import user from '../../../utils/user.js'
 import util from '../../../utils/util.js'
 import api from '../../../config/api.js'
 var app = getApp()
+const userinfo = wx.getStorageSync('userInfo');
+const data = `uid=${encodeURIComponent(userinfo.id)}`;
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    active:0,
     userList:[],
-    followers: [
-      {
-        id: 1,
-        nickname: 'zhangsan',
-        avatarUrl: 'http://storage.oocquin.online/media/0gmnoqqlsseso68ejsu8.jpeg',
-        gender: 0
-      },
-      {
-        id: 2,
-        nickname: 'lisi',
-        avatarUrl: 'http://storage.oocquin.online/media/1x8zpr98cn49wxipohb6.jpg',
-        gender: 1
-      }
-    ]
   },
 
 
@@ -38,24 +27,29 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    this.loadData(api.UserFollow,data)
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.loadData();
+ 
   },
-  loadData(){
-    const userinfo = wx.getStorageSync('userInfo');
-    console.log("usrefid",userinfo.id)
-    const data = `uid=${encodeURIComponent(userinfo.id)}`;
-    util.request(api.UserFollow,data,"POST").then(res =>{
-      console.log("follow",res);
+  loadData(url,data){
+    util.request(url,data,"POST").then(res =>{
       this.setData({
-        userList:res.data.userList
+        userList:res.data
       })
+      // console.log(url,"userlist",this.data.userList);
     })
+  },
+  onChange(event) {
+    const url=[
+      api.UserFollow,
+      api.UserFollower,
+      api.UserCommon
+    ]
+    this.loadData(url[event.detail.index],data);
   },
 })

@@ -9,7 +9,7 @@ var tool = {
     var minute = date.getMinutes()
     var second = date.getSeconds()
     // return '1111'
-    return year+'-'+ (month > 10 ? '' : '0') + month +'-'+day
+    return year+'-'+ (month > 10 ? '' : '0') + month +'-'+ (day > 10 ? '' : '0')+day
     // return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(this.formatNumber).join(':')
   },
   formatNumber:function(n) {

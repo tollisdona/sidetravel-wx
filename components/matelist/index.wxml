@@ -1,11 +1,13 @@
 <!--components/matelist/index.wxml-->
-<view class="area" bind:tap="onClickItem">
+<view class="area" bind:tap="onClickItem" bind:longpress="onLongPress" data-id="{{item.partnerId}}">
   <view class="row">
   <image src="/images/calendar.svg"></image>
   <!-- <van-icon name="calendar-o"></van-icon> -->
   <view class="info"> 
    <text class="title">往返时间:</text>
-   <text class="value">{{item.fromDate}} - {{item.toDate}}</text>  </view>
+   <text class="value">{{item.fromDate}} - {{item.toDate}}</text>
+   <view wx:if="{{item.expire === 1}}" style="color: red; margin-left: 35rpx;">已过期</view>
+   </view>
   </view>
   <view class="row">
   <image src="/images/position.svg"></image>

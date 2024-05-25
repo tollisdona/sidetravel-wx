@@ -16,77 +16,30 @@ page{
   flex-direction: column;
   font-family: Microsoft YaHei UI;
 }
-.title {
-height: 66rpx;
-  color: #D02129;
-  font-weight: bold;
-}
 
 .content {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-
-.input-content-box {
-  height: 84rpx;
-  border-radius: 100rpx;
-  margin: 60rpx 0;
-  text-align: center;
-}
-
-.nick-input {
-  height: 100%;
-  border-radius: 200rpx;
-  border: 2rpx solid rgba(0, 0, 0, 0.1);
-  font-size: 32rpx;
-}
-
-.avatar-container {
-}
-
-.avatar-notice {
-  line-height: 56rpx;
-  font-size: 28rpx;
-}
-
-.avatar-notice-info {
-  color: #D02129;
-}
-
-.avatar-box {
-  height: 300rpx;
+.username-container {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30rpx;
 }
-
-
-.avatar-box-item {
-  height: 134rpx;
-  width: 134rpx;
-  margin: 8rpx;
+.avatar-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.avatar-box-item image {
+.avatar-container image {
   height: 124rpx;
   width: 124rpx;
   border-radius: 124rpx;
-  background-color: #F0AD4E;
+  background-color: #42a3aa;
+  
 }
 
-.avatar-box .active {
-  border: 6rpx solid #D02129;
-  box-sizing: border-box;
-  border-radius: 124rpx;
-}
-
-.avatar-box .active image {
-  border: 6rpx solid #fff;
-  box-sizing: border-box;
-}
 
 .room-container {
   height: 330rpx;
@@ -114,7 +67,7 @@ height: 66rpx;
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;
-  background-color: #D02129;
+  background-color: #7ea0aa;
   border-radius: 100rpx;
   color: #fff;
   font-size: 24rpx;

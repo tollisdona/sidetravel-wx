@@ -1,4 +1,4 @@
-/* pages/userinfo/mymoment/index.wxss */
+/* pages/userinfo/footprint/index.wxss */
 page {
   display: flex;
   flex-direction: column;

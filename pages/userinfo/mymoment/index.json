@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "card":"/components/card/card",
+    "navigation-bar":"/components/navigation-bar/navigation-bar"
+    },
+  "renderer": "skyline",
+  "disableScroll": true,
+  "navigationStyle": "custom"
 }

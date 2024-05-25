@@ -27,10 +27,16 @@ Component({
    */
   methods: {
     onClickItem(){
-    console.log("infoffffff",this.data.item)
       wx.navigateTo({
         url: `/pages/mateinfo/index?item=${encodeURIComponent(JSON.stringify(this.data.item))}`,
       })      
+    },
+    onLongPress(e) {
+      // console.log("infoffffff",this.data.item)
+      const item = this.data.item
+      const id = e.currentTarget.dataset.id;
+      // console.log("iiiiiiid",id)
+      this.triggerEvent('itemLongPress', {item,id});
     }
   }
 })

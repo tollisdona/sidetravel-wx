@@ -16,7 +16,7 @@
     <text class="rig-time">{{tool.tool.formatTime(userinfo.addTime)}}</text>
     <!-- <text class="rig-time">{{userinfo.addTime}}</text> -->
     <!-- <text> 关注 {{userinfo.follow}}  粉丝 {{userinfo.follower}}</text> -->
-    <text bind:tap="goMeFollow"> 关注 2  粉丝 0 </text>
+    <text bind:tap="goMeFollow"> 关注 {{follow}}  粉丝 {{follower}} </text>
   </view>
   </view>
 

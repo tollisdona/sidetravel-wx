@@ -1,14 +1,23 @@
 // pages/location/index.js
 var QQMapWX = require('../../static/lib/qqmap-wx-jssdk.js');
 var qqmapsdk;
+import util from '../../utils/util'
+import user from '../../utils/user'
+import api from '../../config/api'
+const header = {
+  "Content-Type": "application/json",
+  'X-Sidetravel-Token': wx.getStorageSync('token')
+}
+const userInfo = wx.getStorageSync('userInfo')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    latitude: 39.90469, // 默认纬度
-    longitude: 116.40717, // 默认经度
+    latitude: 39.90469, // 默认纬度 用户位置
+    longitude: 116.40717, // 默认经度 用户位置
     scale: 16, // 缩放级别
     list:[{
       "id": 1,
@@ -39,14 +48,12 @@ Page({
     });
     this.mapCtx = wx.createMapContext('myMap');
     this.canIhavePosition();
+    
   },
   onShow(){
     // 检查登录情况
     user.checkLogin().then(res =>{
-      console.log("checklogin:",res);
-      wx.navigateTo({
-        url: '/pages/moment-edit/index',
-      })
+      this.checkOnline()
     }).catch(err =>{
       wx.showToast({
         title: '请先登录！',
@@ -199,6 +206,17 @@ Page({
     this.mapCtx.moveToLocation();
   },
   checkOnline(){
+    const data ={ userId:userInfo.id}
+    util.request(api.OnlineCheck,data,"POST",header).then(res =>{
+      if(res.data === 1){
+        this.setData({ openPosition:true})
+        this.loadMarker();
+      }
+    }).catch(err=>{
+
+    })
+  },
+  clickOnline(){
     wx.showModal({
       title: '确认授权？',
       content: '需要公开您的位置',
@@ -206,64 +224,118 @@ Page({
         if (res.cancel) {
           return;
         }
-    
         if (res.confirm) {
-          this.setData({openPosition:true})
-          console.log("授权成功");
-          this.loadMarker();
+          const data = {
+            userId:userInfo.id,
+            username:userInfo.username,
+            userAvatar:userInfo.avatar,
+            latitude:this.data.latitude,
+            longitude:this.data.longitude
+          }
+          util.request(api.OnlineGo,data,"POST",header).then(res=>{
+            console.log("locationrse",res)
+            if(res.errno ===0 ){
+              this.setData({openPosition:true})
+              console.log("授权成功");
+              this.loadMarker();
+            }else{
+              wx.showToast({
+                title: res.errno,
+                icon:"error"
+              })
+            }
+          }).catch(err=>{
+            wx.showToast({
+              title: err,
+              icon:"error"
+            })            
+          })
+
         }
       }
     })
   },
   loadMarker(){
-    let that = this;
+    const data = {
+      longitude:this.data.longitude,
+      latitude:this.data.latitude
+    }
+    util.request(api.OnlineList,data,"POST",header).then(res =>{
+      console.log("resList",res)
+      if(res.errno === 0){
+        this.setData({
+          list:res.data
+        })
+        this.makeMarkers()
+      }else(
+        wx.showToast({
+          title: res.errno,
+          icon:"error"
+        })
+      )
+    }).catch(err =>{
+      wx.showToast({
+        title: err,
+        icon:"error"
+      })
+    })
+  },
+  makeMarkers(){
+    // that
+    let that = this
     const list = this.data.list;
-    console.log(this.data.list)
     list.forEach(function(i,index){
       console.log("iiii",i,index);
       const newmarker ={
         id: index,  // Use index if user ID is not unique
-        iconPath: "/images/map_marker3.svg",
-        avatar:i.avatar,
+        iconPath: "/images/map_marker4.svg",
+        avatar:i.userAvatar,
         username:i.username,
         latitude: i.latitude,
         longitude: i.longitude,
-        width: i.width,
-        height: i.height,
+        userId:i.userId,
+        width: 30,
+        height: 30,
         customCallout: {
           anchorX:0,
           anchorY:0,
           display:'ALWAYS'
         }
       }
+      console.log("newmarker",newmarker)
       that.setData({
         markers:[...that.data.markers,newmarker]
       })
       console.log("markers1",that.data.markers)
     })
   },
-  setTabbar(){
-    if (typeof this.getTabBar === 'function' ) {
-      this.getTabBar((tabBar) => {
-        tabBar.setData({
-          selected: 3
-        })
-      })
-    }
- },
- lockPosition(){
-   this.setData({ openPosition:false})
-   wx.showToast({
+  lockPosition(){
+   util.request(api.OnlineOff,{userId:userInfo.id},"POST",header).then(res=>{
+    console.log("resooff",res)
+    this.setData({
+      openPosition:false,
+      markers:[]
+    })
+    wx.showToast({
      title: '已隐藏位置',
      icon:'success'
    })
-   this.setData({
-     markers:[]
+   }).catch(err=>{
    })
  },
  goChatRoom(){
+   let position = `lat=${this.data.latitude}&long=${this.data.longitude}`
    wx.navigateTo({
-     url: '/pages/enterLive/index',
+     url: '/pages/enterLive/index?'+ position,
    })
  },
+ setTabbar(){
+  if (typeof this.getTabBar === 'function' ) {
+    this.getTabBar((tabBar) => {
+      tabBar.setData({
+        selected: 3
+      })
+    })
+  }
+},
 })

@@ -16,7 +16,7 @@ Component({
     },
     cancelText:{
       type:String,
-      value:"取消"
+      value:"确定"
     },
     type:String,
     showCancel:{
@@ -99,7 +99,7 @@ Component({
   },
     //取消搜索
     onCancel(){
-      this.triggerEvent('cancel');
+      this.triggerEvent('cancel',{keyword:this.data.value});
     },
     //清除输入内容
     onClearTap(){

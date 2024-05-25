@@ -1,46 +1,43 @@
 /* components/comment/index.wxss */
+
+/* 避免评论和输入框重叠 */
+page {
+  padding-bottom: 80rpx; /* 确保页面底部有足够的空间放置输入框 */
+}
 .comments-container {
   padding: 10px;
 }
-/* .input-container {
-  display: flex;
-  margin-top: 10px;
-}
 
-.input-comment {
-  flex-grow: 1;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-}
-
-.send-button {
-  background-color: #007aff;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-} */
-
-.overlay{
+.input-container {
   position: fixed;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
-  background-color:gainsboro;
-  /* background-color: white; */
-  /* box-shadow: 0px -2px 8px rgba(0,0,0,0.2); */
-  z-index: 1001;
-  opacity: 0.7;
-  filter:blur(opacity=70);
-}
-.input-area{
-  position:fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: white;
-  box-shadow: 0px -2px 8px rgba(0,0,0,0.2);
+  background-color: #fff;
+  padding: 20rpx;
+  box-shadow: 0 -2rpx 5rpx rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
 }
+
+.input-container input {
+  flex: 1;
+  padding: 10rpx;
+  border: 1px solid #ddd;
+  border-radius: 5rpx;
+  margin-right: 10rpx;
+}
+
+.input-container button {
+  padding: 10rpx 10rpx;
+  margin-right: 40rpx;
+  background-color: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 5rpx;
+}
+
 .parent{
   border-bottom: 1px solid #ccc;
 }
@@ -70,7 +67,6 @@
 .wrap .comment-details {
   flex: 1;
 }
-
 .username {
   font-weight: bold;
 }

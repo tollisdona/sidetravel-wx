@@ -6,7 +6,8 @@
 				<view class="navigation-bar-content">
 					<image class="navigation-bar-avatar" src="{{info.userVo.avatar}}" />
 					<view class="navigation-bar-title">{{info.userVo.nickname}}</view>
-					<view class="navigation-bar-follow" wx:if="{{info.userVo.nickname != 'chengyy'}}" bind:tap="clickFollow">关注</view>
+					<view class="navigation-bar-follow" wx:if="{{info.userVo.nickname != localname && !checkFollow}}" bind:tap="clickFollow">关注</view>
+          <view class="navigation-bar-follow" wx:if="{{info.userVo.nickname != localname && checkFollow}}" bind:tap="clickUnFollow">已关注</view>
 				</view>
 			</view>
 			<share-element
@@ -38,7 +39,7 @@
           <text>{{info.content}}</text>
           </view>
     			</view>
-        <comment class="comment" noteId="{{info.noteId}}" bind:pullUpInput="handleCommentReply"  > </comment>
+        <comment id="comment" class="comment" noteId="{{info.noteId}}" bind:pullUpInput="handleCommentReply"  > </comment>
 			</scroll-view>
 			<view class="footer">
 				<view class="footer-content">
@@ -49,10 +50,8 @@
           <test class="share">分享</test>
           </span>
 					<span wx:if="{{hasLogin}}">
-            <image class="like" wx:if="{{clickLike}}"style="width: 20px;height: 20px;"bind:tap="clicklike" src="/images/like.svg" />
-            <image class="like" wx:if="{{!clickLike}}"style="width: 20px;height: 20px;"bind:tap="clicklike" src="/images/like-full.svg" />
-						<!-- <text class="footer-icon">❤</text>
-						{{info.likesCount}} -->
+            <image class="like" wx:if="{{!info.isLike}}"style="width: 20px;height: 20px;"bind:tap="clicklike" src="/images/like.svg" />
+            <image class="like" wx:if="{{info.isLike}}"style="width: 20px;height: 20px;"bind:tap="clicklike" src="/images/like-full.svg" />
 					</span>
 					<span wx:if="{{hasLogin}}">
             <image class="star" wx:if="{{clickStar}}"style="width: 20px;height: 20px;"bind:tap="clickstar" src="/images/star.svg" />

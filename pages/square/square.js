@@ -1,8 +1,9 @@
 // pages/square.js
 import { installRouteBuilder } from '../list/route'
-import { generateGridList,mygenerateGridList, compareVersion, fixGridList } from '../list/utils'
+import {compareVersion, fixGridList } from '../list/utils'
 import util from '../../utils/util'
 import api from '../../config/api'
+import user from '../../utils/user'
 
 const { screenWidth } = wx.getSystemInfoSync()
 Page({
@@ -56,16 +57,16 @@ Page({
   loadHotRequst(){
     // 请求首页动态list
     util.request(api.NoteHotList,{},"POST").then(res =>{
-      console.log("得到热门列表,",res)
+      // console.log("得到热门列表,",res)
       this.setData({
         gridList1: fixGridList(res.data.list),
         gridList: fixGridList(res.data.list)
       })
-      console.log("GridlistL",this.data.gridList)
+      // console.log("GridlistL",this.data.gridList)
     }).catch(err =>{
       wx.showToast({
         title: err,
-        image:"none"
+        image:"error"
       })
     })
   },
@@ -83,7 +84,21 @@ Page({
       console.error('请求失败',err);
     });
   },
-
+  loadFollowRequest(){
+    util.request(api.NoteFollowList,{},"POST").then(res =>{
+      console.log("关注列表,",res)
+      this.setData({
+        gridList0: fixGridList(res.data.list),
+        gridList: fixGridList(res.data.list)
+      })
+      console.log("关注gridlist",this.data.gridList)
+    }).catch(err =>{
+      wx.showToast({
+        title: err,
+        image:"error"
+      })
+    })
+  },
   refreshHandler(){
     this.setData({
       isTriggered:false
@@ -98,7 +113,7 @@ Page({
   },
   clickSearch(){
     wx.navigateTo({
-      url: '/pages/search/index'
+      url: '/pages/searchResults/index'
     })
   },
   clickMessage(){
@@ -116,8 +131,24 @@ Page({
     }else if(this.data.currentTab === 1){
       this.setData({gridList:this.data.gridList1})
     }else if(this.data.currentTab === 0){
-      this.setData({gridList:this.data.gridList0})
+      this.checkLogin();
     }
+  },
+  checkLogin:function(){
+    let that = this;
+    user.checkLogin().then(res =>{
+      that.loadFollowRequest();
+    }).catch(err =>{
+      wx.showToast({
+        title: '请先登录！',
+        icon:"error"
+      })
+      setTimeout(() => {
+        wx.switchTab({
+          url: '/pages/userinfo/index/index',
+        })
+      }, 500); 
+    })
   },
   canIhavePosition:function(){
   wx.getSetting({

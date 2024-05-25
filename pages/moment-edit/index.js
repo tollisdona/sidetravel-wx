@@ -20,20 +20,19 @@ Page({
 
 // 读取图片
 async afterRead(File) {
-  console.log("AFTERREAD")
-  console.log("file:",File.detail.file)
+  // console.log("AFTERREAD")
+  // console.log("file:",File.detail.file)
   const fileLimit = 5 * 1024 * 1024
   let tempFiles = File.detail.file
   for(let i=0; i< tempFiles.length; i++){
     let filePath = tempFiles[i].url
-    // let suffixType = filePath.substring(filePath.lastIndexOf(".")+1)
     if(tempFiles[i].size > fileLimit){
       filePath =await this.compressFile(filePath,tempFiles[i].type)
       tempFiles[i].url= filePath
     }
   }
   this.setData({fileList:this.data.fileList.concat(tempFiles)})
-  console.log("afterread的filelist",this.data.fileList)
+  // console.log("afterread的filelist",this.data.fileList)
   },
   compressFile(src,type){
     return new Promise((resolve) =>{
@@ -73,7 +72,7 @@ async afterRead(File) {
         success: (res) => {
           const data = JSON.parse(res.data);
           // 打印数据
-          console.log("上传返回数据:",data)
+          // console.log("上传返回数据:",data)
           if (data.errno === 0) {
             // 替换临时链接
             this.setData({

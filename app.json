@@ -1,15 +1,13 @@
 {
-  "pages": [    
+  "pages": [
     "pages/userinfo/index/index",
-"pages/start/start",
+    "pages/start/start",
     "pages/location/index",
     "pages/square/square",
     "pages/playmate/index",
     "pages/moment/index",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/search/index",
-    "pages/message/index",
     "pages/detail/detail",
     "pages/playpost/index",
     "pages/playselect/index",
@@ -24,7 +22,8 @@
     "pages/userinfo/mypartner/index",
     "pages/enterLive/index",
     "pages/chatRoom/chatRoom",
-    "pages/userinfo/myfollow/index"
+    "pages/userinfo/myfollow/index",
+    "pages/userinfo/footprint/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
