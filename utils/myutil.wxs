@@ -1,0 +1,22 @@
+var tool = {
+  formatTime:function(ndate) {
+    var date = getDate(ndate)
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+  
+    var hour = date.getHours()
+    var minute = date.getMinutes()
+    var second = date.getSeconds()
+    // return '1111'
+    return year+'-'+ (month > 10 ? '' : '0') + month +'-'+ (day > 10 ? '' : '0')+day
+    // return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(this.formatNumber).join(':')
+  },
+  formatNumber:function(n) {
+    n = n.toString()
+    return n[1] ? n : '0' + n
+  }
+}
+  module.exports={
+    tool:tool
+  }

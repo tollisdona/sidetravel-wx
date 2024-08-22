@@ -1,20 +1,29 @@
 {
   "pages": [
-    "pages/playmate/index",
-    "pages/square/square",
-    "pages/userinfo/index",
-    "pages/moment/index",
+    "pages/userinfo/index/index",
     "pages/start/start",
+    "pages/location/index",
+    "pages/square/square",
+    "pages/playmate/index",
+    "pages/moment/index",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/location/index",
-    "pages/search/index",
-    "pages/message/index",
     "pages/detail/detail",
     "pages/playpost/index",
     "pages/playselect/index",
     "pages/moment-edit/index",
-    "pages/mateinfo/index"
+    "pages/mateinfo/index",
+    "pages/searchResults/index",
+    "pages/userinfo/mymoment/index",
+    "pages/userinfo/myfavorite/index",
+    "pages/userinfo/mylike/index",
+    "pages/userinfo/otheruser/index",
+    "pages/userinfo/changeInfo/index",
+    "pages/userinfo/mypartner/index",
+    "pages/enterLive/index",
+    "pages/chatRoom/chatRoom",
+    "pages/userinfo/myfollow/index",
+    "pages/userinfo/footprint/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -45,7 +54,7 @@
         "text": "景点"
       },
       {
-        "pagePath": "pages/userinfo/index",
+        "pagePath": "pages/userinfo/index/index",
         "text": "个人信息"
       }
     ]
@@ -70,7 +79,9 @@
   "requiredPrivateInfos": [
     "getLocation",
     "choosePoi",
-    "chooseAddress"
+    "chooseAddress",
+    "chooseLocation",
+    "choosePoi"
   ],
   "permission": {
     "scope.userLocation": {

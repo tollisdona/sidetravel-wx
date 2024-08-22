@@ -34,7 +34,8 @@ Component({
    */
   data: {
       areaList,
-      show:false
+      show:false,
+      fieldValue:'',
   },
 
   /**
@@ -57,23 +58,21 @@ Component({
               fieldValue: address,
               show: false,
           })
+          this.triggerEvent("getFromAndTo",{message:address});
           this.handleTap()
-          console.log("省市区为：",address)
-          
       },
-
       handleTap() {
           let value = this.data.address
-          console.log("fieldValue 地址：", value)
-          this.triggerEvent("addressTab", value)
       },
-
+      handleInput(e){
+        this.triggerEvent("getFromAndTo",{message:e.detail.value})
+        
+      },
       onClose() {
           this.setData({
               show: false,
           });
       },
-
   },
   observers: {
       optionValue: function (e) {

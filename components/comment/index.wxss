@@ -1,0 +1,84 @@
+/* components/comment/index.wxss */
+
+/* 避免评论和输入框重叠 */
+page {
+  padding-bottom: 80rpx; /* 确保页面底部有足够的空间放置输入框 */
+}
+.comments-container {
+  padding: 10px;
+}
+
+.input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 20rpx;
+  box-shadow: 0 -2rpx 5rpx rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+.input-container input {
+  flex: 1;
+  padding: 10rpx;
+  border: 1px solid #ddd;
+  border-radius: 5rpx;
+  margin-right: 10rpx;
+}
+
+.input-container button {
+  padding: 10rpx 10rpx;
+  margin-right: 40rpx;
+  background-color: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 5rpx;
+}
+
+.parent{
+  border-bottom: 1px solid #ccc;
+}
+.comment {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.child-comment {
+  margin-left: 20px;
+}
+.wrap{
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.wrap .avatar{
+  width: 35px;
+  height: 35px;
+  border-radius: 20px;
+  /* float: left; */
+  margin-right: 10px;
+}
+
+.wrap .comment-details {
+  flex: 1;
+}
+.username {
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-top: 5px;
+  color: #333;
+}
+
+.comment-time {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
+  

@@ -1,0 +1,41 @@
+<!--components/comment/index.wxml-->
+<view class="comments-container" bindtap="handleTap">
+  <block wx:for="{{commentVoList}}" wx:key="unique">
+    <view class="parent comment">
+      <view class="wrap">
+        <image class="avatar" bind:tap="goToUser" src="{{item.userInfo.avatarUrl}}" />
+        <view class="comment-details comment-item" id="comment-{{index}}" catchtap="replyComment" data-index="{{index}}">
+          <text class="username">{{item.userInfo.userName}}:</text>
+          <text class="comment-text">{{item.content}}</text>
+          <text class="comment-time">{{item.addTime}}</text>
+        </view>
+        <!-- {{item.likesCount}}
+        <image class="like" wx:if="{{!item.isLike}}" style="width: 20px;height: 20px;" bind:tap="clicklike" src="/images/like.svg" />
+        <image class="like" wx:if="{{item.isLike}}" style="width: 20px;height: 20px;" bind:tap="clicklike" src="/images/like-full.svg" /> -->
+      </view>
+      <!-- 子评论 -->
+      <view class="child-comments">
+        <block wx:for="{{item.childComments}}" wx:for-item="child" wx:for-index="cIndex" wx:key="unique">
+          <view class="comment child-comment">
+            <view class="wrap" style="display: flex;">
+              <image class="avatar" src="{{child.userInfo.avatarUrl}}" />
+              <view class="comment-details"  id="comment-{{index}}-{{cIndex}}"  catchtap="replyComment" data-index="{{index}}-{{cIndex}}">
+                <text class="username">{{child.userInfo.userName}}<text style="color:#999"> 回复 {{child.child.toCommentUser}}</text> :</text>
+                <text class="comment-text">{{child.child.content}}</text>
+                <text class="comment-time">{{child.child.addTime}}</text>
+              </view>
+              <!-- {{child.child.likesCount}}
+              <image wx:if="{{!child.isLike}}" class="like" style="width: 20px;height: 20px;" bind:tap="clicklike2" src="/images/like.svg" />
+              <image wx:if="{{child.isLike}}" class="like" style="width: 20px;height: 20px;" bind:tap="clicklike2" src="/images/like-full.svg" /> -->
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+  <!-- 回复按钮 -->
+  <view wx:if="{{showInput}}" class="input-container" style="display: flex; z-index: 999;" catch:tap="preventTap">
+    <input focus="{{showInput}}" adjust-position="{{true}}" type="text" confirm-type="send" placeholder="输入回复内容" bindinput="replyInput" model:value="{{reply}}" />
+    <button size="mini" type="primary" bindtap="submitReply" data-id="{{item.id}}">发送</button>
+  </view>
+</view>

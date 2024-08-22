@@ -1,4 +1,5 @@
 /* pages/playpost/index.wxss */
+
 Page{
   /* background-color: #F6F5F5; */
   background-color: #f2f5fa;

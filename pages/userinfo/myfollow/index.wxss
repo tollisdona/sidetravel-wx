@@ -1,0 +1,28 @@
+/* pages/userinfo/myfollow/index.wxss */
+.area{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.follow{
+  display: flex;
+  flex-direction: row;
+  margin: 0 15px;
+  padding: 1px;
+  align-items: center;
+}
+.avatar image{
+  width: 45px;
+  height: 45px;
+  border-radius: 40px;
+}
+.name{
+  font-weight: 500;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.gender{
+  width: 30px;
+  height: 20px;
+}

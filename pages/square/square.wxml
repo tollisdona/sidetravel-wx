@@ -11,6 +11,14 @@
       <swiper-item class="swiper-item" wx:for="{{tablist}}" wx:key="index">
       <scroll-view  
       scroll-y
+      lower-threshold="100"
+      bindscrolltolower="getMore"
+      enable-back-to-top="true"
+      refresher-enabled
+      refresher-default-style="black"
+      refresher-background="#f7f7f8"
+      bindrefresherrefresh="refreshHandler"
+      refresher-triggered="{{isTriggered}}"
       style="flex:1;width: 100%; overflow: hidden; padding: {{padding}}px; padding-bottom: 0;"
       type="custom"
       show-scrollbar="{{false}}">
@@ -21,6 +29,7 @@
         card-width="{{cardWidth}}"
         index="{{index}}"
         item="{{item}}"
+        heightType="65"
       />
     </grid-view>
     </scroll-view>

@@ -13,11 +13,11 @@
   </view>
   </view>
 </view>
-<view class="cancel" wx:if="{{showCancel}}" mut-bind:tap="onCancel">
+<view class="cancel" wx:if="{{clear&&value}}" mut-bind:tap="onCancel">
   {{cancelText}}
 </view>
 </view>
-  <!-- 联想建议列表 -->
+  <!-- 联想建议列表
   <view class="suggestion" wx:if="{{showSuggestions}}">
     <view wx:for="{{suggestions}}" wx:key="index" 
     data-item="{{item}}"
@@ -27,4 +27,4 @@
 <view class="result" wx:if="{{showResult&&value}}">
   <view wx:for="{{searchResult}}" wx:key="index" bindtap="handleItemTap" data-index="{{index}}">
   {{item}}</view>
-</view>
+</view> -->

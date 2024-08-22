@@ -1,1 +1,56 @@
 /* pages/mateinfo/index.wxss */
+
+.area{
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 15rpx;
+  background-color: #ffffff;
+  margin-bottom: 20rpx;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+}
+.avatar{
+  margin:0rpx 20rpx;
+}
+.uinfo{
+  display: flex;
+  flex-direction: column;
+}  
+
+.r1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+.r1 .username{
+  margin-right: 20rpx;
+}
+
+.gender{
+  width: 40rpx;
+  height: 30rpx;
+}
+
+.menu{
+  display: flex;
+  flex-direction: row-reverse;
+}
+.menu van-icon{
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+}
+
+
+
+.posttime{
+  color:grey;
+}
+
+

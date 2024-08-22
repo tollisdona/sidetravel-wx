@@ -1,38 +1,13 @@
-// pages/UserInfo/index.js
+// pages/userinfo/myfavorite/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    username:'',
-    reg_time:'',
-    gender:1,
-    medal:'',
-    follow:0,
-    follower:0,
-    funcList:[
-      {name:'/images/favorites-fill.svg',txt:'足迹'},
-      {name:'/images/favorites-fill.svg',txt:'足迹'},
-      {name:'/images/favorites-fill.svg',txt:'足迹'},
-      {name:'/images/favorites-fill.svg',txt:'足迹'}
-    ],
-    optionList:[
-      {title:'历史记录'},
-      {title:'我的约伴'},
-      {title:'反馈与建议'}
-    ]
 
   },
-  setTabbar(){
-    if (typeof this.getTabBar === 'function' ) {
-      this.getTabBar((tabBar) => {
-        tabBar.setData({
-          selected: 4
-        })
-      })
-    }
-},
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -51,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.setTabbar();
+
   },
 
   /**

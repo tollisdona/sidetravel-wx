@@ -1,0 +1,17 @@
+<!--pages/enterLive/index.wxml-->
+<navigation-bar back="true" title="聊天室"></navigation-bar>
+<view class="login-container">
+	<view class="content">
+    <view class="avatar-container">
+    <image src="{{userInfo.avatar}}" /></view>
+		<view class="username-container">
+    {{userInfo.username}}
+		</view>
+		<view class="room-container">
+			<text class="room-title">附近聊天室</text>
+			<view class="room-box">
+				<text class="room-box-item" wx:for="{{roomList}}" wx:for-item="room" wx:key="key" bindtap="onSelectRoom" data-room="{{room}}">{{room.name}}</text>
+			</view>
+		</view>
+	</view>
+</view>

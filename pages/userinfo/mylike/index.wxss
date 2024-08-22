@@ -1,0 +1,20 @@
+/* pages/userinfo/mylike/index.wxss */
+page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f2f5fa;
+}
+.view-bias{
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+scroll-view {
+  /* background-color: #fff; */
+  background-color: #f2f5fa;
+}
+view, scroll-view, page, image {
+  box-sizing: border-box;
+}

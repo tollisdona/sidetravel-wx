@@ -12,32 +12,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.loadFontFace({
-      family: 'Angkor',
-      source: 'url("https://fonts.googleapis.com/css2?family=Angkor&display=swap")',
-        })
+
   },
 
   userLogin: function(){
-    wx.getUserProfile({
-      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
+    // wx.getUserProfile({
+    //   desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    //   success: (res) => {
+    //     console.log("getinfo",res)
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //   }
+    // });
+    wx.switchTab({
+      url: '/pages/square/square',
     })
   },
-    // wx.login({
-    //   success: (res) => {
-    //     console.log("333"+res.code);
-    //   },
-    //   fail:()=>{
-    //     console.log("fiale");
-    //   }
-      
-    // })
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

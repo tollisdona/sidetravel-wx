@@ -1,0 +1,17 @@
+<!--pages/userinfo/mypartner/index.wxml-->
+<navigation-bar back="{{true}}" title="约伴信息"></navigation-bar>
+<view class="area">
+  <view class="content">
+    <scroll-view scroll-y style="flex:1;width:100%;overflow: hidden;" type="custom" show-scrollbar="{{false}}" refresher-enabled="{{true}}" refresher-default-style="white">
+      <view class="empty" wx:if="{{postList === null}}">
+        <view>还没有发布过约伴信息，快去发布吧!</view>
+        <view><button type="primary" style="width: 100rpx; height: 50rpx;margin-top: 50rpx; border-radius:50rpx; background-color: #9AD0C2;" bind:tap="onClickPost">
+        发布</button>
+        </view>
+    </view>
+      <view class="">
+        <mate-list wx:for="{{postList}}" wx:key="index" item="{{item}}" bind:itemLongPress="handleItemLongPress" ></mate-list>      
+      </view>
+    </scroll-view>
+  </view>
+</view>

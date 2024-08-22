@@ -1,0 +1,21 @@
+<!--pages/searchResults/index.wxml-->
+<navigation-bar title="搜索"></navigation-bar>
+<search-bar class="search" type="text" placeholder="搜索景点，攻略和路线" showCancel="{{true}}"
+ bindsearch="handleSearch"
+ bindcancel="onSure"/>
+    <scroll-view  
+    scroll-y
+    style="flex:1;width: 100%; overflow: hidden; padding: {{padding}}px; padding-bottom: 0;"
+    type="custom"
+    show-scrollbar="{{false}}">
+    <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="4" main-axis-gap="4">
+    <card 
+      wx:for="{{gridList}}"
+      wx:key="id"
+      card-width="{{cardWidth}}"
+      index="{{index}}"
+      item="{{item}}"
+      heightType="80"
+    />
+    </grid-view>
+    </scroll-view>

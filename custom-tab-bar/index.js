@@ -43,7 +43,7 @@ Component({
         "icons":"/images/position-fill.svg",
       },
       {
-        "pagePath": "pages/userinfo/index",
+        "pagePath": "pages/userinfo/index/index",
         "text": "个人信息",
         "icon":"/images/user.svg",
         "icons":"/images/user-fill.svg",
@@ -60,6 +60,9 @@ Component({
       const data = e.currentTarget.dataset;
       console.log(data);
       if(data.index === 2){
+        // wx.switchTab({
+        //    url:'/pages/moment-edit/index' 
+        // })
         wx.navigateTo({
           url: '/pages/moment-edit/index',
         })

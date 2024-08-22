@@ -6,5 +6,6 @@
     },
   "renderer": "skyline",
   "disableScroll": true,
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true
 }

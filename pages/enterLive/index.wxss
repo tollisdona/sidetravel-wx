@@ -1,0 +1,77 @@
+/* pages/enterLive/index.wxss */
+page{
+  height: 100%;
+  width: 100%;
+  font-family: Source Han Sans CN;
+}
+
+.login-container{
+  padding: 68rpx 72rpx 0 72rpx;
+}
+.header {
+  font-size: 52rpx;
+  line-height: 66rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-family: Microsoft YaHei UI;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.username-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30rpx;
+}
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar-container image {
+  height: 124rpx;
+  width: 124rpx;
+  border-radius: 124rpx;
+  background-color: #42a3aa;
+  
+}
+
+
+.room-container {
+  height: 330rpx;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.1rem;
+}
+
+.room-title {
+  font-size: 30rpx;
+  line-height: 110rpx;
+  height: 110rpx;
+}
+
+.room-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.room-box-item {
+  width: 288rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background-color: #7ea0aa;
+  border-radius: 100rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+.input-notice {
+  border: 2rpx solid #D02129;
+}

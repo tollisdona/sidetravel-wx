@@ -1,5 +1,11 @@
+import util from '../../utils/util'
+import api from '../../config/api'
+var app = getApp()
+const header = {
+  "Content-Type": "application/json",
+  'X-Sidetravel-Token': wx.getStorageSync('token')
+}
 const { shared } = wx.worklet
-
 const FlightDirection = {
   PUSH: 0,
   POP: 1,
@@ -22,7 +28,12 @@ Component({
       type: Number,
       value: 0
     },
+    heightType:{
+      type: Number,
+      value:0
+    }
   },
+
   lifetimes: {
     created() {
       this.scale = shared(1)
@@ -90,9 +101,19 @@ Component({
   },
 
   methods: {
+
     navigateTo(e) {
-      const { index, url, content, ratio, nickname } = e.currentTarget.dataset
-      const urlContent = `../../pages/detail/detail?index=${index}&url=${encodeURIComponent(url)}&content=${content}&ratio=${ratio}&nickname=${nickname}`
+      const { index, url, ratio, info} = e.currentTarget.dataset
+      console.log("detaiL",e.currentTarget.dataset)
+      const urlContent = `../../pages/detail/detail?index=${index}&url=${encodeURIComponent(url)}&ratio=${ratio}&info=${encodeURIComponent(JSON.stringify(info))}`
+
+      // 添加足迹
+      if(wx.getStorageSync('userInfo') != null){
+        const data = `uId=${wx.getStorageSync('userInfo').id}&noteId=${info.noteId}`
+        util.request(api.FootprintAdd,data,"POST").then(res=>{
+          console.log("res",res)
+        })
+      }
       wx.navigateTo({
         url: urlContent,
         routeType: 'CardScaleTransition',
@@ -123,6 +144,76 @@ Component({
       if (globalThis['RouteCardDestRect'] && globalThis['RouteCardDestRect'].value == undefined) {
         globalThis['RouteCardDestRect'].value = data.end
       }
+    },
+
+    clickLike(){
+      let that =this
+      this.checkLogin();
+      const like = {
+        type:0,
+        tId:this.data.item.info.noteId,
+        uid:wx.getStorageSync('userInfo').id
+      }
+      util.request(api.InteractLike,like,"POST",{
+        "Content-Type": "application/json",
+        'X-Sidetravel-Token': wx.getStorageSync('token')
+      }).then(res =>{
+        if(res.errno === 0){
+          this.setData({
+          'item.info.isLike': true,
+          'item.info.likesCount': that.data.item.info.likesCount + 1 
+        })
+        }else{
+          wx.showToast({
+            title: res.errno,
+            icon:'error'
+          })
+        }
+      }).catch(err=>{
+
+      })
+    },
+    clickUnLike(){
+      let that = this
+      const like = {
+        type:0,
+        tId:this.data.item.info.noteId,
+        uid:wx.getStorageSync('userInfo').id
+      }
+      util.request(api.InteractLike,like,"POST",{
+        "Content-Type": "application/json",
+        'X-Sidetravel-Token': wx.getStorageSync('token')
+      }).then(res =>{
+        if(res.errno === 0){
+          this.setData({
+          'item.info.isLike': false,
+          'item.info.likesCount': that.data.item.info.likesCount -1
+        })
+        }else{
+          wx.showToast({
+            title: res.errno,
+            icon:"error"
+          })
+        }
+      }).catch(err=>{
+
+      })
+    },
+    checkLogin: function () {
+      if (!app.globalData.hasLogin) {  // Assuming isUserLoggedIn is a method that checks login status
+        wx.showToast({
+          title: '请先登录',
+          icon: 'none',
+          duration: 2000
+        });
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/userinfo/index/index',// Update this with the path to your login page
+          })
+        }, 500); // Wait for the toast to end before redirecting
+        return;
+      }
+      // If the user is logged in, do nothing, let the input gain focus naturally
     },
   },
 })

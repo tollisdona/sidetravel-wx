@@ -19,7 +19,8 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "compileWorklet": true
+    "compileWorklet": true,
+    "condition": true
   },
   "condition": {},
   "editorSetting": {

@@ -1,0 +1,32 @@
+<!--pages/userinfo/changeInfo/index.wxml-->
+<navigation-bar title="修改个人信息"></navigation-bar>
+<view class="edit-info-container">
+  <view class="edit-info-item avatar-item">
+    <view class="avatar-uploader">
+      <image src="{{avatar}}" mode="aspectFill"></image>
+    </view>
+    <button bindtap="chooseAvatar" size="mini">选择头像</button>
+  </view>
+  <view class="edit-info-item">
+    <view class="edit-info-label">姓名</view>
+    <input class="edit-info-input" value="{{user.username}}" bindinput="handleNameInput" />
+  </view>
+  <view class="edit-info-item">
+    <view class="edit-info-label">性别</view>
+    <radio-group class="gender-item" bindchange="handleGenderChange">
+      <label>
+        <radio value="男" checked="{{user.gender === 0 }}">男</radio>
+      </label>
+      <label>
+        <radio value="女" checked="{{ user.gender === 1 }}">女</radio>
+      </label>
+    </radio-group>
+  </view>
+  <view class="edit-info-item">
+    <view class="edit-info-label">生日</view>
+    <picker  mode="date" value="{{ user.birthday }}" start="1900-01-01" end="2100-12-31" bindchange="handleBirthdayChange">
+      <view class="edit-info-input">{{ user.birthday === null ? '请填写':user.birthday }}</view>
+    </picker>
+  </view>
+  <button class="confirm-btn" bindtap="confirmEdit">确认修改</button>
+</view>

@@ -13,7 +13,7 @@
         welcome
     </view>
     <view class="login">
-      <button bindtap="userLogin">欢迎</button>
+      <button bind:tap="userLogin">登录</button>
     </view>
     
 </view>
