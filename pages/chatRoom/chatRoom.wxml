@@ -12,7 +12,7 @@
 		<view class="scroll-view">
 			<view id="item{{index}}"  class="message-box" wx:for-item="message" wx:for="{{currentRoom.messages}}" wx:key="key">
 				<view class="message-item">
-          <image src="{{currentRoom.currentUser.avatar}}" ></image>
+          <!-- <image src="{{currentRoom.currentUser.avatar}}" ></image> -->
 					<text class="user-name">{{message && message.senderNickname}}:</text>
 					<text class="{{message.senderUserId == currentRoom.currentUser.id ? 'user-message self' : 'user-message'}}">{{message && message.content}}</text>
 				</view>

@@ -101,11 +101,18 @@ Component({
   },
 
   methods: {
-
     navigateTo(e) {
       const { index, url, ratio, info} = e.currentTarget.dataset
       console.log("detaiL",e.currentTarget.dataset)
-      const urlContent = `../../pages/detail/detail?index=${index}&url=${encodeURIComponent(url)}&ratio=${ratio}&info=${encodeURIComponent(JSON.stringify(info))}`
+      var pageRoute = getCurrentPages()[getCurrentPages().length - 1].route
+      var urlContent
+      if(pageRoute.indexOf('/userinfo') !== -1){
+        // 当前路径在 /userinfo/ 下，执行相应逻辑
+        urlContent = `../../../pages/detail/detail?index=${index}&url=${encodeURIComponent(url)}&ratio=${ratio}&info=${encodeURIComponent(JSON.stringify(info))}`
+      }else{
+        urlContent = `../../pages/detail/detail?index=${index}&url=${encodeURIComponent(url)}&ratio=${ratio}&info=${encodeURIComponent(JSON.stringify(info))}`
+      }
+      // console.log("page",page)
 
       // 添加足迹
       if(wx.getStorageSync('userInfo') != null){

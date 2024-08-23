@@ -32,7 +32,7 @@
     <image class="avatar" src="{{item.userVo.avatar}}" />
     <view class="username">{{item.userVo.nickname}}</view>
     <image src="/images/male1.svg" class="gender male" wx:if="{{item.userVo.gender === 0}}" />
-    <image src="/images/female1.svg" class="gender female" wx:if="{{item.user.gender === 1}}" />
+    <image src="/images/female1.svg" class="gender female" wx:if="{{item.userVo.gender === 1}}" />
     <view class="medal" wx:if="{{!item.medal === ''}}"></view>
     <view class="posttime">{{item.addTime}}</view>
   </view>

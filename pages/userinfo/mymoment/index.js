@@ -52,7 +52,6 @@ Page({
         })
       }
     })
-
   },
   onShow(){
     this.loadData();

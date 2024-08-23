@@ -16,7 +16,7 @@
     </view>
   </view>
   <van-cell-group class="body">
-    <van-cell icon="/images/calendar.svg" title="往返时间" value=""> {{item.fromDate}} —— {{item.toDate}}</van-cell>
+    <van-cell icon="/images/calendar.svg" title="往返时间" value=""> {{item.fromDate}}—{{item.toDate}}</van-cell>
     <van-cell icon="guide-o" title="目的地" value="{{item.toPosition}}"> </van-cell>
     <van-cell icon="wap-home-o" title="出发地" value="{{item.fromPosition}}"> </van-cell>
     <van-field 

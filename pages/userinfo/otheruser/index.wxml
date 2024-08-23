@@ -1,2 +1,23 @@
 <!--pages/userinfo/otheruser/index.wxml-->
-<text>pages/userinfo/otheruser/index.wxml</text>
+<!--pages/UserInfo/index.wxml-->
+<wxs src="../../../utils/myutil.wxs" module="tool"></wxs>
+<navigation-bar back="{{true}}" title="用户"></navigation-bar>
+<view>
+  <view class="model">
+    <image class="user-avatar" src="{{userinfo.avatar}}" />
+    <view class="user-info">
+      <view style="display:flex; flex-direction: row; align-items: center;">
+        <text class="username">{{userinfo.username}}</text>
+        <image src="/images/male1.svg" class="gender male" wx:if="{{userinfo.gender === 0}}" />
+        <image src="/images/female1.svg" class="gender female" wx:if="{{userinfo.gender === 1}}" />
+      </view>
+      <text class="rig-time">{{tool.tool.formatTime(userinfo.register)}}</text>
+
+    </view>
+  </view>
+</view>
+<scroll-view scroll-y style="flex:1;width: 100%; overflow: hidden; padding: {{padding}}px; padding-bottom: 0;" type="custom" show-scrollbar="{{false}}">
+  <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="4" main-axis-gap="4">
+    <card wx:for="{{gridList}}" wx:key="id" card-width="{{cardWidth}}" index="{{index}}" item="{{item}}" heightType="65" />
+  </grid-view>
+</scroll-view>

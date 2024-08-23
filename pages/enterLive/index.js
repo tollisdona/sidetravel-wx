@@ -11,7 +11,7 @@ Page({
     allRoomList: [
       { roomId: "001", name: "济南大学", latitude: 36.614417, longitude: 116.966653 },
       { roomId: "002", name: "趵突泉公园", latitude: 36.66029, longitude: 117.016228 },
-      { roomId: "003", name: "济南大厦", latitude: 36.651363, longitude: 116.997795 },
+      { roomId: "003", name: "济南龙奥大厦", latitude: 36.651786, longitude: 117.120188},
       { roomId: "004", name: "大明湖风景区", latitude: 36.675148, longitude: 117.026253 }
     ],
     roomList: [],

@@ -30,7 +30,7 @@ Page({
     gridList1:[],
     gridList2:[],
     cardWidth: (screenWidth - 4 * 2 - 4) / 2, // 减去间距
-    isTriggered:true,
+    // isTriggered:true,
     latitude:0,
     longitude:0
   },
@@ -99,11 +99,31 @@ Page({
       })
     })
   },
-  refreshHandler(){
+  // refreshHandler(){
+  //   this.setData({
+  //     isTriggered:false
+  //   })
+  // },
+    /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  refreshHandler() {
+    console.log("下拉刷新");
+    
+    // 根据当前选中的 tab 进行相应的请求
+    if (this.data.currentTab === 0) {
+        this.loadFollowRequest(); // 关注列表
+    } else if (this.data.currentTab === 1) {
+        this.loadHotRequst(); // 热门列表
+    } else if (this.data.currentTab === 2) {
+        this.canIhavePosition(); // 附近列表
+    }
+
+    // 停止下拉刷新动画
     this.setData({
-      isTriggered:false
-    })
-  },
+        isTriggered: false
+    });
+},
   tabTap(event){
     console.log("点击tabs",event.currentTarget.dataset.index)
     const index = event.currentTarget.dataset.index;
@@ -226,13 +246,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
@@ -256,20 +269,20 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-    wx.showNavigationBarLoading() //在标题栏中显示加载
-    // 请求首页动态list
-    console.log("下拉")
-    util.request(api.NoteHotList,{},"POST").then(res =>{
-      console.log("得到热门列表,",res.data.list)
-      this.setData({
-        gridList: fixGridList(res.data.list,2)
-      })
-      console.log("Gridlist",this.data.gridList)
-    })
-    wx.hideNavigationBarLoading() //完成停止加载
-    wx.stopPullDownRefresh()
-  },
+  // onPullDownRefresh() {
+  //   wx.showNavigationBarLoading() //在标题栏中显示加载
+  //   // 请求首页动态list
+  //   console.log("下拉")
+  //   util.request(api.NoteHotList,{},"POST").then(res =>{
+  //     console.log("得到热门列表,",res.data.list)
+  //     this.setData({
+  //       gridList: fixGridList(res.data.list)
+  //     })
+  //     console.log("Gridlist",this.data.gridList)
+  //   })
+  //   wx.hideNavigationBarLoading() //完成停止加载
+  //   wx.stopPullDownRefresh()
+  // },
 
   /**
    * 页面上拉触底事件的处理函数

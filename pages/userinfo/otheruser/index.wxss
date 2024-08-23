@@ -1,1 +1,89 @@
 /* pages/userinfo/otheruser/index.wxss */
+page{
+  background-color: #f2f5fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.model{
+  margin: 20rpx 30rpx;
+  border-radius: 50rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30rpx 50rpx;
+}
+
+.model .login{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content: center;
+  /*撑满width*/
+  flex:1;
+}
+.user-avatar{
+  height: 150rpx;
+  width: 150rpx;
+  margin-right: 30rpx;
+  border-radius: 25rpx;
+}
+.rig-time{
+  color: grey;
+}
+
+.user-info text{
+  margin-bottom: 10rpx;
+  font-size: 30rpx;
+}
+.username{
+  font-weight: bold;
+  margin-right:20rpx;
+}
+.gender{
+  width: 40rpx;
+  height: 30rpx;
+}
+.user-info{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.model.card{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.model.card .item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10rpx;
+}
+.item image{
+  width: 80rpx;
+  height:80rpx;
+}
+
+.model.option{
+  font-weight: bold;
+}
+.view-bias{
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+scroll-view {
+  /* background-color: #fff; */
+  background-color: #f2f5fa;
+  height: 500rpx;
+}
+view, scroll-view, page, image {
+  box-sizing: border-box;
+}

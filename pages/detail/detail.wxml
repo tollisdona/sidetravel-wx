@@ -37,6 +37,7 @@
           <view class="detail-p" style="padding-bottom: 20px;" />
 					<view class="detail-p">
           <text>{{info.content}}</text>
+          <text style="color: grey; margin-top: 20rpx; font-size: 24rpx;">发布地点:{{position.name}}-{{position.address}}</text>
           </view>
     			</view>
         <comment id="comment" class="comment" noteId="{{info.noteId}}" bind:pullUpInput="handleCommentReply"  > </comment>

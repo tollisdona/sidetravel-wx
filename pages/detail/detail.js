@@ -50,6 +50,7 @@ Component({
     localname: '',
     checkFollow: null,
     fans: {},
+    position:{}
   },
   lifetimes: {
     created() {
@@ -221,7 +222,8 @@ Component({
         fans: {
           "uid": wx.getStorageSync('userInfo').id,
           "followId": info.uid
-        }
+        },
+        position:JSON.parse(info.position)
       })
       console.log("fans", this.data.fans)
       await this.promiseCheckFollow(this.data.fans).then(res => {

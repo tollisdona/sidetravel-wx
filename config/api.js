@@ -1,10 +1,10 @@
 // 以下是业务服务器API地址
 // 本机开发时使用
-// var WxApiRoot = 'http://localhost:8082/wx/';
+var WxApiRoot = 'http://localhost:8082/wx/';
 // 局域网测试使用
 // var WxApiRoot = 'http://192.168.164.114:8082/wx/';
 // 内网穿透测试 
-var WxApiRoot = 'https://3ackenqpjiej-5997.beijing-02.dayunet.com:443/wx/';
+// var WxApiRoot = 'https://3ackenqpjiej-5997.beijing-02.dayunet.com:443/wx/';
 // 云平台部署时使用
 // var WxApiRoot = 'http://122.51.199.160:8080/wx/';
 // 云平台上线时使用
@@ -35,6 +35,7 @@ module.exports = {
   UserFollower: WxApiRoot + '/interact/fansList', // 获取粉丝列表
   UserCommon: WxApiRoot + '/interact/commonList', // 获取互相关注列表
   UserUpdate: WxApiRoot + '/user/update',//更新用户信息
+  UserFind: WxApiRoot + '/user/find', // 获取其他用户信息
   InteractLike: WxApiRoot + '/interact/like', //点赞
   InteractCheckLike: WxApiRoot + '/interact/checkLike', //检查点赞
   InteractFollow: WxApiRoot + '/interact/follow', //关注

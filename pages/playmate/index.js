@@ -11,6 +11,14 @@ Page({
     selectList:[]
   },
   tabTapP: function () {
+    if(!app.globalData.hasLogin){
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none',
+        duration: 2000
+     });
+     return;
+    }
     wx.navigateTo({
       url: '/pages/playpost/index',
     })
@@ -33,7 +41,7 @@ Page({
     }
   },
   onClickPost(){
-    if(app.globalData.hasLogin){
+    if(!app.globalData.hasLogin){
       wx.showToast({
         title: '请先登录',
         icon: 'none',
